@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://amieveryday.com/</loc></url>
-<url><loc>https://amieveryday.com/products.html</loc></url>
-<url><loc>https://amieveryday.com/product-tomato-paste.html</loc></url>
+<url><loc>https://amieveryday.com/</loc></url><url><loc>https://amieveryday.com/es/</loc></url>
+<url><loc>https://amieveryday.com/products.html</loc></url><url><loc>https://amieveryday.com/es/products.html</loc></url>
+<url><loc>https://amieveryday.com/product-tomato-paste.html</loc></url><url><loc>https://amieveryday.com/es/product-tomato-paste.html</loc></url>
+<url><loc>https://amieveryday.com/recipes.html</loc></url><url><loc>https://amieveryday.com/es/recipes.html</loc></url>
+<url><loc>https://amieveryday.com/where-to-buy.html</loc></url><url><loc>https://amieveryday.com/es/where-to-buy.html</loc></url>
+<url><loc>https://amieveryday.com/about.html</loc></url><url><loc>https://amieveryday.com/es/about.html</loc></url>
+<url><loc>https://amieveryday.com/partners.html</loc></url><url><loc>https://amieveryday.com/es/partners.html</loc></url>
+<url><loc>https://amieveryday.com/contact.html</loc></url><url><loc>https://amieveryday.com/es/contact.html</loc></url>
 </urlset>

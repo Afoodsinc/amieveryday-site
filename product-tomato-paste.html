@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tomato Paste · ami anytime</title>
-<meta name="description" content="ami anytime Tomato Paste — made with 100% tomatoes, no artificial flavors, no preservatives. 15 oz / 425 g.">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="description" content="Made with 100% tomatoes">
 <link rel="canonical" href="https://amieveryday.com/product-tomato-paste.html">
-<meta property="og:title" content="Tomato Paste · ami anytime"><meta property="og:description" content="ami anytime Tomato Paste — made with 100% tomatoes, no artificial flavors, no preservatives. 15 oz / 425 g."><meta property="og:image" content="https://amieveryday.com/img/gen-basket.webp"><meta property="og:type" content="website">
+<link rel="alternate" hreflang="en" href="https://amieveryday.com/product-tomato-paste.html"><link rel="alternate" hreflang="es" href="https://amieveryday.com/es/product-tomato-paste.html"><link rel="alternate" hreflang="x-default" href="https://amieveryday.com/product-tomato-paste.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Tomato Paste · ami anytime"><meta property="og:description" content="Made with 100% tomatoes"><meta property="og:image" content="https://amieveryday.com/img/tomato-paste.webp"><meta property="og:type" content="website"><meta property="og:locale" content="en_US">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap">
+
 <style>
   :root{
     --navy:#253768; --navy-deep:#1B2A52; --navy-ink:#16223F;
@@ -249,58 +250,100 @@
   .note h4{margin:0 0 8px;font-family:var(--display);font-weight:800;color:var(--navy);font-size:15px}
   .note ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px}
 
-  @media (max-width:1100px){ :root{--pad:24px} .hero{grid-template-columns:1fr;gap:28px;padding-top:36px} .hero h2{font-size:44px} .pillars{grid-template-columns:1fr 1fr} .pillars > div + div{border-left:0;padding-left:0} .aisles,.grid4{grid-template-columns:repeat(2,minmax(0,1fr))} .recipes{grid-template-columns:1fr 1fr} .life{grid-template-columns:1fr} .life figure.big{grid-row:auto} .partners{grid-template-columns:1fr;padding:32px 24px 0} .where{grid-template-columns:1fr} .fgrid{grid-template-columns:1fr 1fr} .plp{grid-template-columns:1fr} .rail{display:none} .grid3{grid-template-columns:repeat(2,minmax(0,1fr))} .pdp{grid-template-columns:1fr} .tabs .tb{grid-template-columns:1fr} .range{flex-direction:column;align-items:flex-start} }
-  @media (max-width:640px){ .menu{display:none} .util .l{display:none} .hero h2{font-size:38px} .aisles,.grid4,.grid3,.recipes,.fgrid,.pillars{grid-template-columns:1fr} .pdp .stage{height:380px} }
+  a.wm{text-decoration:none}
+  .lang a{color:#fff} .lang a.on{color:var(--navy)}
+  .burger{display:none}
+  .page-head{padding:44px var(--pad) 8px} .page-head h1{font-family:var(--display);font-weight:900;font-size:44px;letter-spacing:-.03em;color:var(--navy);margin:10px 0 4px;text-wrap:balance} .page-head .es{color:var(--ink-3);font-size:17px} .page-head p{color:var(--ink-2);max-width:64ch;margin:14px 0 0;font-size:16.5px}
+  .catalog{padding:24px var(--pad) 56px;display:flex;flex-direction:column;gap:40px}
+  .dept{scroll-margin-top:90px} .dept-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line-2);padding-bottom:10px;margin-bottom:16px}
+  .dept-head h3{font-family:var(--display);font-weight:900;font-size:26px;letter-spacing:-.02em;color:var(--navy);margin:0;display:flex;align-items:center;gap:12px} .dept-head h3 i{width:14px;height:14px;border-radius:50%;background:var(--c);display:inline-block}
+  .dept-head span{color:var(--ink-3);font-size:14px;font-variant-numeric:tabular-nums}
+  .items{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .item{border:1px solid var(--line);border-radius:var(--r-s);padding:12px 14px;display:flex;gap:12px;align-items:center;background:#fff;min-height:64px}
+  .item i{flex:none;width:34px;height:34px;border-radius:9px;background:var(--c);opacity:.9;display:inline-flex;align-items:center;justify-content:center}
+  .item i svg{width:18px;height:18px;color:#fff}
+  .item b{display:block;font-weight:700;font-size:14.5px;color:var(--ink);line-height:1.2} .item small{color:var(--ink-3);font-size:12.5px;font-variant-numeric:tabular-nums}
+  .item.soon b::after{content:" · " attr(data-soon);color:var(--green-ink);font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  .deptnav{display:flex;gap:8px;flex-wrap:wrap;padding:18px var(--pad) 0}
+  .deptnav a{border:1px solid var(--line);border-radius:var(--pill);padding:8px 13px;font-size:13px;font-weight:600;color:var(--ink-2);display:inline-flex;align-items:center;gap:8px;background:#fff} .deptnav a i{width:9px;height:9px;border-radius:50%;background:var(--c);display:inline-block}
+  .rgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:24px var(--pad) 56px}
+  .rc{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff;display:flex;flex-direction:column}
+  .rc img{width:100%;aspect-ratio:3/2;object-fit:cover}
+  .rc .b{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px}
+  .rc .with{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--green-ink);font-weight:700}
+  .rc h3{font-family:var(--display);font-weight:800;font-size:20px;color:var(--navy);margin:0;line-height:1.15}
+  .rc .meta{color:var(--ink-3);font-size:13px;display:flex;gap:12px}
+  .recipe{padding:8px var(--pad) 56px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:start;scroll-margin-top:90px}
+  .recipe img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:var(--r);box-shadow:var(--sh-photo)}
+  .recipe h2{font-family:var(--display);font-weight:900;font-size:34px;letter-spacing:-.025em;color:var(--navy);margin:0 0 4px;text-wrap:balance}
+  .recipe .meta{color:var(--ink-3);font-size:14px;display:flex;gap:14px;margin-bottom:14px}
+  .recipe h4{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--green-ink);margin:18px 0 8px}
+  .recipe ul,.recipe ol{margin:0;padding-left:20px;color:var(--ink);display:flex;flex-direction:column;gap:6px;font-size:15px}
+  .recipe .uses{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px} .recipe .uses span{border:1px solid var(--line);border-radius:var(--pill);padding:6px 12px;font-size:12.5px;font-weight:600;color:var(--navy);background:var(--paper-warm)}
+  .rsep{height:1px;background:var(--line-2);margin:0 var(--pad) 40px}
+  #map{height:520px;border-radius:var(--r);border:1px solid var(--line);margin:24px var(--pad) 0;overflow:hidden;background:var(--paper-warm)}
+  .markets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:24px var(--pad) 8px}
+  .mk{border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;background:#fff}
+  .mk b{display:block;font-family:var(--display);font-weight:800;font-size:18px;color:var(--navy)} .mk .st{display:inline-block;margin:6px 0 8px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:var(--pill);padding:4px 9px;background:var(--green-soft);color:var(--green-ink)} .mk .st.next{background:#EEF0F3;color:var(--ink-3)} .mk p{margin:0;color:var(--ink-2);font-size:14.5px}
+  .two{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;padding:24px var(--pad) 56px;align-items:start}
+  .prose{color:var(--ink);font-size:16.5px;max-width:62ch} .prose p{margin:0 0 16px} .prose h3{font-family:var(--display);font-weight:900;font-size:24px;letter-spacing:-.02em;color:var(--navy);margin:26px 0 8px}
+  .vals{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px} .vals div{border:1px solid var(--line);border-radius:var(--r-s);padding:14px 16px;background:#fff} .vals b{display:block;font-family:var(--display);font-weight:800;color:var(--navy);font-size:16px;margin-bottom:4px} .vals span{color:var(--ink-2);font-size:14px}
+  .stack{display:flex;flex-direction:column;gap:18px} .stack img{width:100%;border-radius:var(--r);box-shadow:var(--sh-photo);object-fit:cover}
+  .card{border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;background:#fff}
+  .card h3{font-family:var(--display);font-weight:800;font-size:18px;color:var(--navy);margin:0 0 10px}
+  .card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:15px;color:var(--ink)}
+  .card li{display:flex;gap:10px;align-items:flex-start} .card li svg{flex:none;color:var(--green-ink);margin-top:3px}
+  .form{display:flex;flex-direction:column;gap:12px} .form label{font-size:13px;font-weight:700;color:var(--ink-2);display:flex;flex-direction:column;gap:6px}
+  .form input,.form textarea,.form select{font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)} .form textarea{min-height:120px;resize:vertical}
+  .form input:focus,.form textarea:focus,.form select:focus{outline:3px solid var(--green);outline-offset:1px;border-color:var(--navy)}
+  .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:8px var(--pad) 40px}
+  .step{border:1px solid var(--line);border-radius:var(--r);padding:20px;background:#fff} .step b{display:block;font-family:var(--display);font-weight:900;font-size:28px;color:var(--green-ink);margin-bottom:6px} .step h4{margin:0 0 6px;font-family:var(--display);font-weight:800;font-size:17px;color:var(--navy)} .step p{margin:0;color:var(--ink-2);font-size:14.5px}
+  .banner{margin:0 var(--pad);border-radius:var(--r);overflow:hidden} .banner img{width:100%;aspect-ratio:16/7;object-fit:cover;display:block}
+  @media (max-width:1100px){ :root{--pad:24px} .hero{grid-template-columns:1fr;gap:28px;padding-top:36px} .hero h2{font-size:44px} .pillars{grid-template-columns:1fr 1fr} .pillars > div + div{border-left:0;padding-left:0} .aisles,.grid4,.items{grid-template-columns:repeat(2,minmax(0,1fr))} .recipes,.rgrid,.markets,.steps{grid-template-columns:1fr 1fr} .life{grid-template-columns:1fr} .life figure.big{grid-row:auto} .partners{grid-template-columns:1fr;padding:32px 24px 0} .where,.two,.recipe{grid-template-columns:1fr} .fgrid{grid-template-columns:1fr 1fr} .plp{grid-template-columns:1fr} .rail{display:none} .grid3{grid-template-columns:repeat(2,minmax(0,1fr))} .pdp{grid-template-columns:1fr} .tabs .tb{grid-template-columns:1fr} .range{flex-direction:column;align-items:flex-start} .page-head h1{font-size:36px} }
+  @media (max-width:700px){ .util .l{display:none} .hero h2{font-size:36px} .aisles,.grid4,.grid3,.recipes,.rgrid,.markets,.steps,.fgrid,.pillars,.items,.vals{grid-template-columns:1fr} .pdp .stage{height:380px} #map{height:380px}
+    .nav{flex-wrap:wrap;gap:12px} .menu{display:none;width:100%;flex-direction:column;gap:4px;padding:8px 0 4px;border-top:1px solid var(--line-2)} .menu a{padding:10px 0} .nav.open .menu{display:flex}
+    .burger{display:inline-flex;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);align-items:center;justify-content:center;background:#fff;color:var(--navy);cursor:pointer;margin-left:auto} .nav-actions .btn{display:none} }
 </style>
 </head>
-<body>
-<div class="boardwrap"><div class="frame">
-      <div class="util"><div class="l"><span>A brand of American Foods International · Miami, FL</span></div><div class="r"><div class="lang"><span class="on">EN</span><span>ES</span></div><a href="#"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Find a store</a></div></div>
-      <div class="nav">
-        <div class="wm"><span class="word">am<span class="i">ı</span></span><span class="bar"></span><span class="sub">anytime</span></div>
-        <nav class="menu"><a href="#">About</a><a href="/products.html" class="on">Products</a><a href="#">Recipes</a><a href="#">Where to Buy</a><a href="#">Partners</a><a href="#">Contact</a></nav>
-        <div class="nav-actions"><a class="icon-btn" href="#" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></a><a class="btn primary sm" href="#">Find a store</a></div>
+<body><div class="boardwrap"><div class="frame">
+
+      <div class="util"><div class="l"><span>A brand of American Foods International · Miami, FL</span></div><div class="r">
+        <div class="lang"><a class="on" href="/products.html">EN</a><a href="/es/products.html">ES</a></div>
+        <a href="/where-to-buy.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Find a store</a></div></div>
+      <div class="nav" id="nav"><a class="wm" href="/"><span class="word">am<span class="i">ı</span></span><span class="bar"></span><span class="sub">anytime</span></a>
+        <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+        <nav class="menu"><a href="/about.html">About</a><a href="/products.html" class="on">Products</a><a href="/recipes.html">Recipes</a><a href="/where-to-buy.html">Where to Buy</a><a href="/partners.html">Partners</a><a href="/contact.html">Contact</a></nav>
+        <div class="nav-actions"><a class="icon-btn" href="/products.html" aria-label="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></a><a class="btn primary sm" href="/where-to-buy.html">Find a store</a></div>
       </div>
-      <div class="crumbs"><a href="/">Home</a><span>/</span><a href="/products.html">Products</a><span>/</span><a href="#">Canned Goods</a><span>/</span><b>Tomato Paste</b></div>
-      <div class="pdp" style="--c:var(--c-tomato)">
-        <div>
-          <div class="stage"><img src="/img/tomato-paste.webp" alt="ami anytime tomato paste, 15 oz can"></div>
-          <div class="thumbs"><div class="on"><img src="/img/tomato-paste.webp" alt=""></div><div><img class="cover" src="/img/gen-basket.webp" alt=""></div><div>Back label</div><div>Nutrition panel</div></div>
+
+      <div class="crumbs"><a href="/">Home</a><span>/</span><a href="/products.html">Products</a><span>/</span><a href="/products.html#canned">Canned Goods</a><span>/</span><b>Tomato Paste</b></div>
+      <div class="pdp" style="--c:var(--c-tomato)"><div><div class="stage"><img src="/img/tomato-paste.webp" alt="ami anytime tomato paste"></div>
+        <div class="thumbs"><div class="on"><img src="/img/tomato-paste.webp" alt=""></div><div><img class="cover" src="/img/gen-basket.webp" alt=""></div><div><img class="cover" src="/img/new-life-cooking.webp" alt=""></div><div><img class="cover" src="/img/recipe-sopa.webp" alt=""></div></div></div>
+        <div><span class="cat"><i></i>Tomato · Canned Goods</span><h2>Tomato Paste</h2><p class="es">Pasta de tomate</p>
+          <div class="sz"><span class="on">15 oz · 425 g</span><span>6 oz · 170 g</span></div><ul class="claims"><li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>Made with 100% tomatoes</li><li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>No artificial flavors</li><li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>No preservatives</li></ul>
+          <div class="cta"><a class="btn primary" href="/where-to-buy.html">Find a store</a><a class="btn ghost" href="/contact.html">Spec sheet for buyers</a></div>
+          <div class="guar"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Quality guaranteed</b><span>Every ami product carries the American Foods quality guarantee. If a product isn’t right, take it back to the store where you bought it, or write to us — we make it right, no questions.</span></div></div></div></div>
+      <div class="tabs"><div class="th"><a href="#" class="on">Ingredients</a><a href="#">Nutrition</a><a href="#">How to use</a></div>
+        <div class="tb"><div><h6>Ingredients</h6><p>Tomatoes. That’s it — concentrated tomato paste with no added flavors or preservatives.</p></div>
+          <div><h6>Nutrition</h6><p>Per 2 tbsp (33 g): about 30 kcal, 0 g fat, 6 g carbohydrate, 1 g protein. Full panel on pack.</p></div>
+          <div><h6>How to use</h6><p>Concentrated tomato for sofrito, stews, rice, sauces and soups. Two tablespoons deepen any tomato base; refrigerate the rest in a covered container.</p></div></div></div>
+      <div class="related"><div class="sec-head"><div><span class="eyebrow">Goes well with</span><h3>From the same aisle</h3></div><a href="/products.html#canned">See canned goods <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div><div class="grid4"><div class="pcard" style="--c:var(--c-tomato);position:relative"><div class="ph"><img src="/img/new-diced-tomatoes.webp" alt="Diced Tomatoes"></div><div class="meta"><span class="cat"><i></i>Tomato</span><span class="nm">Diced Tomatoes</span><span class="es">Easy open</span><span class="sz">14.5 oz · 411 g</span></div></div><div class="pcard" style="--c:var(--c-veg);position:relative"><div class="ph"><img src="/img/new-black-beans.webp" alt="Black Beans"></div><div class="meta"><span class="cat"><i></i>Beans</span><span class="nm">Black Beans</span><span class="es"></span><span class="sz">15 oz · 425 g</span></div></div><div class="pcard" style="--c:var(--c-veg);position:relative"><div class="ph"><img src="/img/new-pinto.webp" alt="Pinto Beans"></div><div class="meta"><span class="cat"><i></i>Beans</span><span class="nm">Pinto Beans</span><span class="es"></span><span class="sz">15 oz · 425 g</span></div></div><div class="pcard" style="--c:var(--c-sea);position:relative"><div class="ph"><img src="/img/tuna.webp" alt="Tuna Chunks"></div><div class="meta"><span class="cat"><i></i>Seafood</span><span class="nm">Tuna Chunks</span><span class="es"></span><span class="sz">5 oz · 142 g</span></div></div></div></div>
+
+      <footer>
+        <div class="fgrid">
+          <div><a class="wm white" href="/"><span class="word">am<span class="i">ı</span></span><span class="bar"></span><span class="sub">anytime</span></a><p>Present at every breakfast, every celebration, every stage of life.</p>
+            <div class="social">
+              <a href="https://www.linkedin.com/company/americanfoods" aria-label="LinkedIn" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9h4v12H4zM6 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM10 9h4v2c1-1.5 2.5-2.5 4.5-2.5 3 0 4.5 2 4.5 5V21h-4v-6c0-1.5-.5-2.5-2-2.5S14 13.5 14 15v6h-4z"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+              <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
+            </div></div>
+          <div><h5>Products</h5><ul><li><a href="/products.html#canned">Canned Goods</a></li><li><a href="/products.html#pantry">Pantry</a></li><li><a href="/products.html#beverages">Beverages</a></li><li><a href="/products.html#household">Household</a></li><li><a href="/products.html">All products</a></li></ul></div>
+          <div><h5>Brand</h5><ul><li><a href="/about.html">About ami</a></li><li><a href="/about.html#guarantee">Our guarantee</a></li><li><a href="/recipes.html">Recipes</a></li><li><a href="/where-to-buy.html">Where to buy</a></li></ul></div>
+          <div><h5>Partners</h5><ul><li><a href="/partners.html">Become a partner</a></li><li><a href="/partners.html#program">Country licensing</a></li><li><a href="/contact.html">Spec sheets</a></li><li><a href="/contact.html">Contact sales</a></li></ul></div>
+          <div><h5>Contact</h5><ul><li><a href="mailto:info@afoodsinc.com">info@afoodsinc.com</a></li><li><a href="tel:+18778947675">+1 877 894 7675</a></li><li>Distributed by American Foods International Inc</li><li>2300 NW 92nd Ave, Doral, FL 33172, USA</li></ul>
+            <p><span class="seal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>Quality guaranteed</span></p></div>
         </div>
-        <div>
-          <span class="cat"><i></i>Tomato · Canned Goods</span>
-          <h2>Tomato Paste</h2>
-          <p class="es">Pasta de tomate</p>
-          <div class="sz"><span class="on">15 oz · 425 g</span><span>6 oz · 170 g</span></div>
-          <ul class="claims">
-            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>Made with 100% tomatoes</li>
-            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>No artificial flavors</li>
-            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>No preservatives</li>
-          </ul>
-          <div class="cta"><a class="btn primary" href="#">Find a store</a><a class="btn ghost" href="#">Spec sheet for buyers</a></div>
-          <div class="guar">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#253768" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"/><path d="m9 12 2 2 4-4"/></svg>
-            <div><b>Quality guaranteed</b><span>If it isn’t right, it’s on us — bring it back to the store where you bought it.</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="tabs">
-        <div class="th"><a href="#" class="on">Ingredients</a><a href="#">Nutrition</a><a href="#">How to use</a><a href="#">Where it’s made</a></div>
-        <div class="tb">
-          <div><h6>Ingredients · Ingredientes</h6><div class="ph">[From the supplier specification — Lidia confirms before publish]</div></div>
-          <div><h6>Nutrition facts</h6><div class="ph">[Per-serving panel from the approved label artwork]</div></div>
-          <div><h6>How to use</h6><p>Concentrated tomato for sofrito, stews, rice, sauces and soups. Two tablespoons deepen any tomato base; refrigerate the rest in a covered container.</p></div>
-        </div>
-      </div>
-      <div class="related">
-        <div class="sec-head"><div><span class="eyebrow">Goes well with</span><h3>From the same aisle</h3></div><a href="/products.html">All canned goods <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-        <div class="grid4">
-          <div class="pcard" style="--c:var(--c-tomato)"><div class="ph"><img src="/img/new-diced-tomatoes.webp" alt=""></div><div class="meta"><span class="cat"><i></i>Tomato</span><span class="nm">Diced Tomatoes</span><span class="es">Tomates en trozos · easy open</span><span class="sz">14.5 oz · 411 g</span></div></div>
-          <div class="pcard" style="--c:var(--c-veg)"><div class="ph"><img src="/img/new-black-beans.webp" alt=""></div><div class="meta"><span class="cat"><i></i>Beans</span><span class="nm">Black Beans</span><span class="es">Frijoles negros</span><span class="sz">15 oz · 425 g</span></div></div>
-          <div class="pcard" style="--c:var(--c-veg)"><div class="ph"><img src="/img/new-pinto.webp" alt=""></div><div class="meta"><span class="cat"><i></i>Beans</span><span class="nm">Pinto Beans</span><span class="es">Frijoles pintos</span><span class="sz">15 oz · 425 g</span></div></div>
-          <div class="pcard" style="--c:var(--c-sea)"><div class="ph"><img src="/img/tuna.webp" alt=""></div><div class="meta"><span class="cat"><i></i>Protein</span><span class="nm">Tuna Chunks</span><span class="es">Atún en trozos</span><span class="sz">5 oz · 142 g</span></div></div>
-        </div>
-      </div>
+        <div class="legal"><span>© 2026 American Foods International Inc. ami anytime™ is a trademark of American Foods International Inc.</span><div class="links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></div></div>
+      </footer>
     </div></div>
-</body>
-</html>
+    </body></html>
