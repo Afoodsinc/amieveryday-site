@@ -1,4 +1,4 @@
-# amieveryday.com — ami anytime brand website
+# amianytime.com — ami anytime brand website
 
 Static site (HTML/CSS, no build step). Published with GitHub Pages; custom domain via `CNAME`.
 
