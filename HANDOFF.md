@@ -60,3 +60,4 @@ Frank Stanzione (CEO, owner, non-technical — wants numbers and decisions, not 
 - 2026-09-09 — rewrote all six recipes in English and Spanish around the 29 launch products, corrected metric pack sizes, and removed non-launch ami ingredient claims.
 - 2026-09-09 — added responsive two-size WebP delivery for large lifestyle, recipe, banner, and lineup images across both languages, including responsive preloads.
 - 2026-09-09 — made the canned-goods filters keyboard-accessible and functional in English and Spanish, added live result counts, and removed the fake one-option sort.
+- 2026-09-09 — added a localized, horizontally scrollable aisle jump menu for tablet and phone catalog browsing while preserving the desktop aisle rail.
