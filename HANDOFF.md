@@ -56,3 +56,4 @@ Frank Stanzione (CEO, owner, non-technical — wants numbers and decisions, not 
 - 2026-09-03 — site v1 published (EN/ES, 16 pages), domain amianytime.com bound, HTTPS enforced, 11 domains forwarded.
 - 2026-09-09 — new deck art (29-item launch range, real packshots site-wide, new lineup/lifestyle) · CTO + UX reviews · same-day fixes (see §2) · this handoff.
 - 2026-09-09 — added a branded bilingual 404 page with clear EN/ES routes back to Home and Products.
+- 2026-09-09 — translated all 149 full-program product names on the Spanish catalogue and normalized launch terminology to neutral Latin American Spanish.
