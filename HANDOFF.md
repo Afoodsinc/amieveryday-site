@@ -13,7 +13,7 @@ Written by Claude (Frank Stanzione's chief-of-staff agent) for the next builder 
 | Backlog | `docs/reviews/cto-review.md` and `docs/reviews/ux-review.md` (ranked, with evidence and paste-ready copy) |
 | Source art (designer packshots) | Dropbox: `Frank Claude AI/Ami Own Brand proyect/06 Brand & Marketing/_website-source/` → `Deck English2 (2026-09-08).pdf` (17-page catalogue, latest art), `deck-2026-09-08-extracted-art/` (35 PNGs pulled from the PDF: 3-view can renders 1536×1024, drink rows, tuna trio, ketchup, soy, noodles, lineup 3010×2000, lifestyle, badge, lockup, tagline) and `_web-assets-QA-sheet.png`. Web-ready WebP versions are already in `img/`. |
 | AI lifestyle renders | Dropbox: `…/06 Brand & Marketing/_web-lifestyle-renders/` (Higgsfield nano-banana-pro; `gen-*.webp`, `recipe-*.webp`) |
-| SKU list | Dropbox: `Frank Claude AI/Ami Own Brand proyect/` → `AMI_Own_Brand_Program_149_SKUs.xlsx` (the 149-product program). ⚠️ It disagrees with the deck (see §4). |
+| SKU list | Dropbox: `Frank Claude AI/Knowledge/source-files/AMI_Own_Brand_Program_149_SKUs.xlsx` (the 149-product program). ⚠️ It disagrees with the deck (see §4). |
 | Project record (decisions, history) | Dropbox: `Frank Claude AI/Projects/ami-website.md` |
 | Company contact facts used on the site | 2300 NW 92nd Ave, Doral, FL 33172 · PH Plaza del Este, Torre A, Piso 13, Costa del Este, Panamá · +1 877 894 7675 · +507 310 7576 · info@afoodsinc.com (**mailbox unverified** — confirm with Jorge, AFI IT) |
 
