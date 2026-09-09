@@ -10,7 +10,7 @@ Written by Claude (Frank Stanzione's chief-of-staff agent) for the next builder 
 | Repo (source of truth) | github.com/Afoodsinc/amieveryday-site — branch `main`, root, public. Repo name is legacy; the domain is amianytime.com. Owner org: `Afoodsinc` (AFI-owned; Frank's GitHub). |
 | Hosting | GitHub Pages, custom domain via the `CNAME` file, Enforce HTTPS ON, certificate issued. Cache header `max-age=600`. No HSTS/CSP (GitHub Pages limitation; Cloudflare free tier would add them — owner decision). |
 | DNS (GoDaddy, Frank's account) | amianytime.com: A @ → 185.199.108/109/110/111.153, CNAME www → afoodsinc.github.io. 11 other domains 301-forward to https://amianytime.com: amieveryday.com, amianytime.co, ami-brands.com, amilabel.com, theamibrand.com, theamibrands.net/.info/.shop/.store/.xyz, theamistore.com. Every GoDaddy save needs Frank's SMS code. **Do not touch.** |
-| Backlog | `docs/reviews/cto-review.md` and `docs/reviews/ux-review.md` (ranked, with evidence and paste-ready copy) |
+| Backlog | `docs/reviews/cto-review.md` and `docs/reviews/ux-review.md` (ranked, with evidence and paste-ready copy). Current benchmark direction: `docs/reviews/benchmark-refresh-2026-09-09.md`. |
 | Source art (designer packshots) | Dropbox: `Frank Claude AI/Ami Own Brand proyect/06 Brand & Marketing/_website-source/` → `Deck English2 (2026-09-08).pdf` (17-page catalogue, latest art), `deck-2026-09-08-extracted-art/` (35 PNGs pulled from the PDF: 3-view can renders 1536×1024, drink rows, tuna trio, ketchup, soy, noodles, lineup 3010×2000, lifestyle, badge, lockup, tagline) and `_web-assets-QA-sheet.png`. Web-ready WebP versions are already in `img/`. |
 | AI lifestyle renders | Dropbox: `…/06 Brand & Marketing/_web-lifestyle-renders/` (Higgsfield nano-banana-pro; `gen-*.webp`, `recipe-*.webp`) |
 | SKU list | Dropbox: `Frank Claude AI/Knowledge/source-files/AMI_Own_Brand_Program_149_SKUs.xlsx` (the 149-product program). ⚠️ It disagrees with the deck (see §4). |
@@ -36,15 +36,15 @@ A Python generator (`gen.py` + `template.html` + `skus.json`) produced the pages
 7. **One partner sentence** everywhere: "ami is licensed to one retail partner per country, category by category, with price shielding written into the license." Site currently says "select few"/"one"/"single" inconsistently and "21 departments" vs 8 aisles.
 
 ## 5. Backlog that needs no decision (ranked, from the reviews)
-- Branded 404 page (`404.html` at root; GitHub Pages serves it).
-- ES catalogue: the 149 program names are still English on `/es/products.html`.
-- Recipes: 5 of 6 use non-launch products → rewrite around the 29 launch items (tomato, beans, tuna, corn, mushrooms, noodles, peach, drinks).
-- `srcset` two sizes for the 1300 px lifestyle photos; self-host fonts (or keep Google Fonts + preconnect, already done).
-- Filters/sort chips on Products are inert (no JS) → make them work or remove.
-- Aisle rail hidden below 1100 px → add an in-page aisle jump menu for tablet/phone.
-- Wordmark alt text: use "ami anytime" (a dotless ı in one image alt makes screen readers say "amıanytime").
-- Analytics (Plausible or GoatCounter, cookieless), UptimeRobot, Google Search Console — Frank opens accounts.
-- Consolidate 30+ ad-hoc font sizes into the type scale.
+- [x] Branded 404 page (`404.html` at root; GitHub Pages serves it).
+- [x] ES catalogue: translate the 149 program names on `/es/products.html`.
+- [x] Recipes: rewrite all six around the 29 launch items.
+- [x] Add two-size `srcset` delivery for large lifestyle photos; keep Google Fonts with preconnect for now.
+- [x] Make the canned-goods filters work and remove the fake sort.
+- [x] Add an in-page aisle jump menu for tablet and phone.
+- [x] Give every wordmark the accessible name "ami anytime".
+- [ ] Analytics (Plausible or GoatCounter, cookieless), UptimeRobot, Google Search Console — Frank opens accounts.
+- [x] Consolidate ad-hoc font sizes into the eight-step type scale.
 
 ## 6. Scores to beat (2026-09-09)
 UX 6/10. Benchmark /30: Aldi 20 · Trader Joe's 20 · Essential Everyday 18 · Great Value 17 · **ami 17** (wins bilingual 4/5 and B2B path 4/5; loses product browse 2/5 and where-to-buy 1/5). Technical: lighter than all benchmarks; gaps were structured data, forms, legal pages, HSTS/CSP.
@@ -63,3 +63,9 @@ Frank Stanzione (CEO, owner, non-technical — wants numbers and decisions, not 
 - 2026-09-09 — added a localized, horizontally scrollable aisle jump menu for tablet and phone catalog browsing while preserving the desktop aisle rail.
 - 2026-09-09 — gave every header and footer wordmark the accessible name “ami anytime” while keeping the stylized dotless mark visual-only.
 - 2026-09-09 — consolidated the site into an eight-step responsive type scale and corrected stale heading selectors so the real H1s render at the intended hierarchy.
+- 2026-09-09 — applied a benchmark-led “modern pantry” visual refinement and added distinct shopper and retailer pathways on both homepages without changing the gated hero copy.
+- 2026-09-09 — added real bilingual catalogue search by name, category and size; wired every header search icon to it; preserved the existing canned filters.
+- 2026-09-09 — replaced unsupported About and return-guarantee language with evidence-safe brand facts and product-support instructions in English and Spanish.
+- 2026-09-09 — made the language switch and active navigation explicit to assistive technology and added Escape-to-close mobile navigation behavior.
+- 2026-09-09 — connected the tomato-paste detail page to its real recipe and removed false PDP tabs, dead social links and placeholder legal links as clickable controls.
+- 2026-09-09 — recorded the official food-brand benchmark, adopted patterns, exclusions and acceptance standard in `docs/reviews/benchmark-refresh-2026-09-09.md`.
