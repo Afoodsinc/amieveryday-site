@@ -57,3 +57,4 @@ Frank Stanzione (CEO, owner, non-technical — wants numbers and decisions, not 
 - 2026-09-09 — new deck art (29-item launch range, real packshots site-wide, new lineup/lifestyle) · CTO + UX reviews · same-day fixes (see §2) · this handoff.
 - 2026-09-09 — added a branded bilingual 404 page with clear EN/ES routes back to Home and Products.
 - 2026-09-09 — translated all 149 full-program product names on the Spanish catalogue and normalized launch terminology to neutral Latin American Spanish.
+- 2026-09-09 — rewrote all six recipes in English and Spanish around the 29 launch products, corrected metric pack sizes, and removed non-launch ami ingredient claims.
