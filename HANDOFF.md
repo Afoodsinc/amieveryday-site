@@ -62,3 +62,4 @@ Frank Stanzione (CEO, owner, non-technical — wants numbers and decisions, not 
 - 2026-09-09 — made the canned-goods filters keyboard-accessible and functional in English and Spanish, added live result counts, and removed the fake one-option sort.
 - 2026-09-09 — added a localized, horizontally scrollable aisle jump menu for tablet and phone catalog browsing while preserving the desktop aisle rail.
 - 2026-09-09 — gave every header and footer wordmark the accessible name “ami anytime” while keeping the stylized dotless mark visual-only.
+- 2026-09-09 — consolidated the site into an eight-step responsive type scale and corrected stale heading selectors so the real H1s render at the intended hierarchy.
