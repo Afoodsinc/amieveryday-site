@@ -71,26 +71,76 @@
     apply();
   }
 
+  const productDialog = document.getElementById('product-dialog');
+  if (productDialog) {
+    const quickProducts = [...document.querySelectorAll('[data-quick-product]')];
+    const dialogImage = document.getElementById('product-dialog-image');
+    const dialogCategory = document.getElementById('product-dialog-category');
+    const dialogTitle = document.getElementById('product-dialog-title');
+    const dialogSize = document.getElementById('product-dialog-size');
+    const dialogFull = document.getElementById('product-dialog-full');
+    let opener = null;
+    quickProducts.forEach((product) => product.addEventListener('click', () => {
+      opener = product;
+      if (dialogImage) { dialogImage.src = product.dataset.image; dialogImage.alt = `ami ${product.dataset.name}, ${product.dataset.size}`; }
+      if (dialogCategory) dialogCategory.textContent = product.dataset.categoryLabel;
+      if (dialogTitle) dialogTitle.textContent = product.dataset.name;
+      if (dialogSize) dialogSize.textContent = product.dataset.size;
+      if (dialogFull) {
+        dialogFull.hidden = !product.dataset.full;
+        if (product.dataset.full) dialogFull.href = product.dataset.full;
+      }
+      productDialog.showModal();
+    }));
+    productDialog.addEventListener('click', (event) => {
+      if (event.target === productDialog) productDialog.close();
+    });
+    productDialog.addEventListener('close', () => opener?.focus());
+  }
+
   const mapFrame = document.querySelector('.market-map-frame');
   const marketFeature = document.querySelector('.market-feature');
   if (mapFrame && marketFeature) {
     const markers = [...mapFrame.querySelectorAll('.market-marker')];
     const cards = [...document.querySelectorAll('[data-market-card]')];
+    const filters = [...document.querySelectorAll('[data-market-filter]')];
     const number = marketFeature.querySelector('.market-index');
     const name = marketFeature.querySelector('h3');
     const status = marketFeature.querySelector(':scope > strong');
-    const body = marketFeature.querySelector('p');
-    const link = marketFeature.querySelector('a');
+    const body = marketFeature.querySelector(':scope > p');
     const selectMarket = (marker) => {
       markers.forEach((item) => item.setAttribute('aria-pressed', String(item === marker)));
-      cards.forEach((card) => card.classList.toggle('is-active', card.dataset.marketCard === marker.dataset.market));
+      cards.forEach((card) => {
+        const active = card.dataset.marketCard === marker.dataset.market;
+        card.classList.toggle('is-active', active);
+        if (active) card.setAttribute('aria-current', 'true'); else card.removeAttribute('aria-current');
+      });
       if (number) number.textContent = marker.querySelector('span')?.textContent.padStart(2, '0') || '';
       if (name) name.textContent = marker.dataset.name;
-      if (status) status.textContent = marker.dataset.status.split(' · ')[1] || marker.dataset.status;
+      if (status) status.textContent = marker.dataset.status;
       if (body) body.textContent = marker.dataset.body;
-      if (link) link.href = `#market-${marker.dataset.market}`;
     };
     markers.forEach((marker) => marker.addEventListener('click', () => selectMarket(marker)));
+    cards.forEach((card) => card.addEventListener('click', (event) => {
+      event.preventDefault();
+      const marker = markers.find((item) => item.dataset.market === card.dataset.marketCard);
+      if (!marker) return;
+      selectMarket(marker);
+      if (window.matchMedia('(max-width: 560px)').matches) {
+        marketFeature.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      }
+    }));
+    filters.forEach((filter) => filter.addEventListener('click', () => {
+      const region = filter.dataset.marketFilter;
+      filters.forEach((item) => item.setAttribute('aria-pressed', String(item === filter)));
+      markers.forEach((marker) => { marker.hidden = region !== 'all' && marker.dataset.region !== region; });
+      cards.forEach((card) => { card.hidden = region !== 'all' && card.dataset.region !== region; });
+      const visibleSelected = markers.find((marker) => !marker.hidden && marker.getAttribute('aria-pressed') === 'true');
+      if (!visibleSelected) {
+        const firstVisible = markers.find((marker) => !marker.hidden);
+        if (firstVisible) selectMarket(firstVisible);
+      }
+    }));
     const selected = markers.find((marker) => marker.getAttribute('aria-pressed') === 'true') || markers[0];
     if (selected) selectMarket(selected);
   }

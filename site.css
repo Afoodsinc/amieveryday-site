@@ -235,6 +235,43 @@ button { color: inherit; }
 .proof-strip div + div { border-left: 1px solid var(--line); }
 .proof-strip i { width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 6px var(--green-soft); }
 
+.product-showcase-hero,
+.recipe-showcase-hero {
+  min-height: 650px;
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(520px, 1.1fr);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(145deg, var(--navy-3), var(--navy));
+  box-shadow: var(--shadow-lg);
+  color: #fff;
+}
+.product-hero-copy,
+.recipe-hero-copy { padding: clamp(44px, 6vw, 78px); display: flex; flex-direction: column; justify-content: center; }
+.product-hero-copy h1,
+.recipe-hero-copy h1 { margin: 20px 0 0; color: #fff; font: 900 clamp(3.4rem, 5.4vw, 5.8rem)/.94 "Nunito", sans-serif; letter-spacing: -.055em; text-wrap: balance; }
+.product-hero-copy h1 em,
+.recipe-hero-copy h1 em { color: var(--green); font-style: normal; }
+.product-hero-copy > p,
+.recipe-hero-copy > p { max-width: 590px; margin: 24px 0 0; color: rgba(255,255,255,.74); font-size: 1.08rem; }
+.product-hero-kpis,
+.recipe-hero-facts { margin-top: 38px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,.16); }
+.product-hero-kpis span,
+.recipe-hero-facts span { padding: 20px 14px 0 0; display: flex; flex-direction: column; color: rgba(255,255,255,.58); font-size: .76rem; }
+.product-hero-kpis strong,
+.recipe-hero-facts strong { color: #fff; font: 900 1.7rem/1 "Nunito", sans-serif; }
+.product-hero-visual { position: relative; display: grid; place-items: center; padding: 52px; background: radial-gradient(circle at 50% 45%, rgba(143,187,63,.32), transparent 34%), #fff; }
+.product-hero-visual::before { content: ""; position: absolute; inset: 26px; border: 1px solid rgba(20,37,77,.09); border-radius: 26px; }
+.product-hero-visual img { width: 100%; position: relative; z-index: 1; filter: drop-shadow(0 26px 28px rgba(20,37,77,.16)); }
+.range-seal { width: 126px; height: 126px; position: absolute; right: 30px; top: 30px; z-index: 2; display: grid; place-content: center; border-radius: 50%; background: var(--green); color: var(--navy-3); text-align: center; font-size: .7rem; font-weight: 900; line-height: 1.15; text-transform: uppercase; transform: rotate(5deg); box-shadow: 0 20px 45px -25px rgba(20,37,77,.7); }
+.range-seal strong { display: block; font: 900 2.6rem/.9 "Nunito", sans-serif; }
+.recipe-showcase-hero { grid-template-columns: minmax(0, .84fr) minmax(520px, 1.16fr); }
+.recipe-hero-visual { min-height: 650px; position: relative; overflow: hidden; }
+.recipe-hero-visual img { width: 100%; height: 100%; object-fit: cover; }
+.recipe-hero-visual::after { content: ""; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, rgba(13,26,56,.76)); }
+.recipe-hero-visual > span { position: absolute; z-index: 2; left: 36px; bottom: 32px; color: #fff; font: 900 clamp(1.5rem, 2.4vw, 2.4rem)/1 "Nunito", sans-serif; }
+
 .section { padding: clamp(78px, 8vw, 118px) 0 0; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 32px; }
 .section-heading h2 { margin-top: 12px; font-size: clamp(2.4rem, 4vw, 4.1rem); }
@@ -293,14 +330,17 @@ button { color: inherit; }
 
 .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 .product-card {
+  width: 100%;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #fff;
   box-shadow: var(--shadow);
+  color: inherit;
+  text-align: left;
 }
-a.product-card { transition: transform .2s ease, box-shadow .2s ease; }
-a.product-card:hover { transform: translateY(-4px); box-shadow: 0 26px 55px -35px rgba(20,37,77,.78); }
+a.product-card, button.product-card { display: block; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
+a.product-card:hover, button.product-card:hover { transform: translateY(-5px); box-shadow: 0 30px 62px -34px rgba(20,37,77,.78); }
 .product-visual {
   min-height: 280px;
   position: relative;
@@ -314,7 +354,11 @@ a.product-card:hover { transform: translateY(-4px); box-shadow: 0 26px 55px -35p
 .product-meta { min-height: 142px; padding: 20px 21px 23px; display: flex; flex-direction: column; }
 .product-category { color: var(--category, var(--green-dark)); font-size: .72rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
 .product-name { margin-top: 7px; color: var(--navy); font: 900 1.22rem/1.12 "Nunito", sans-serif; }
-.product-size { margin-top: auto; padding-top: 13px; color: var(--muted); font-size: .9rem; }
+.product-card-bottom { margin-top: auto; padding-top: 13px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.product-size { color: var(--muted); font-size: .9rem; }
+.product-card-action { display: inline-flex; align-items: center; gap: 5px; color: var(--navy); font-size: .72rem; font-weight: 900; }
+.product-card-action svg { width: 15px; height: 15px; transition: transform .18s ease; }
+.product-card:hover .product-card-action svg { transform: translateX(3px); }
 .product-note { margin-left: auto; color: var(--navy); font-size: .75rem; font-weight: 800; }
 
 .identity-panel {
@@ -350,7 +394,9 @@ a.product-card:hover { transform: translateY(-4px); box-shadow: 0 26px 55px -35p
 .recipe-card h3 { margin: 8px 0 0; color: var(--navy); font: 900 1.45rem/1.08 "Nunito", sans-serif; }
 .recipe-meta { margin-top: 13px; display: flex; gap: 15px; color: var(--muted); font-size: .86rem; }
 .uses { margin-top: 15px; display: flex; flex-wrap: wrap; gap: 7px; }
-.uses span { padding: 5px 10px; border-radius: 999px; background: var(--green-soft); color: var(--green-dark); font-size: .72rem; font-weight: 800; }
+.uses span, .uses a { padding: 5px 10px; border-radius: 999px; background: var(--green-soft); color: var(--green-dark); font-size: .72rem; font-weight: 800; }
+.uses a { transition: background .18s ease, color .18s ease; }
+.uses a:hover { background: var(--green-dark); color: #fff; }
 
 .retailer-panel {
   margin-bottom: 96px;
@@ -436,42 +482,80 @@ a.product-card:hover { transform: translateY(-4px); box-shadow: 0 26px 55px -35p
 .ambition-band h2 { max-width: 1050px; margin: 17px 0 0; color: #fff; font: 900 clamp(2.8rem, 5vw, 5.3rem)/.95 "Nunito", sans-serif; letter-spacing: -.05em; }
 .ambition-band p { max-width: 760px; margin: 24px 0 0; color: rgba(255,255,255,.72); font-size: 1.05rem; }
 
-.market-explorer { margin: 46px 0 90px; padding: clamp(28px, 4vw, 48px); border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow); }
+.market-explorer { margin: 46px 0 90px; padding: clamp(28px, 4vw, 48px); border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow-lg); }
 .market-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, .7fr); gap: 40px; align-items: end; }
 .market-intro h2 { margin: 10px 0 0; color: var(--navy); font: 900 clamp(2.5rem, 4vw, 4.3rem)/.98 "Nunito", sans-serif; letter-spacing: -.045em; }
 .market-intro > p { margin: 0; padding: 18px 20px; border-left: 4px solid var(--green); background: var(--green-soft); color: #46536a; }
+.market-filter-row { margin-top: 26px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: thin; }
+.market-filter-row button { min-height: 42px; flex: none; padding: 0 16px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--navy); font-size: .8rem; font-weight: 900; cursor: pointer; }
+.market-filter-row button[aria-pressed="true"] { border-color: var(--navy); background: var(--navy); color: #fff; }
 .skip-map { display: inline-flex; margin: 24px 0 14px; color: var(--navy); font-size: .82rem; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
 .market-map-layout { display: grid; grid-template-columns: minmax(0, 1.28fr) minmax(280px, .72fr); gap: 18px; }
-.market-map-frame { min-height: 650px; position: relative; display: grid; place-items: center; overflow: hidden; border-radius: 26px; background: radial-gradient(circle at 55% 45%, #edf5e1, transparent 32%), linear-gradient(160deg, #f8fbf2, #e8eef6); }
-.market-map-frame > img { width: min(92%, 660px); height: 92%; object-fit: contain; opacity: .13; filter: grayscale(1); }
-.market-marker { width: 44px; height: 44px; position: absolute; left: var(--x); top: var(--y); z-index: 3; display: grid; place-items: center; transform: translate(-50%,-50%); border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
-.market-marker::before { content: ""; width: 16px; height: 16px; border: 3px solid #fff; border-radius: 50%; background: var(--green); box-shadow: 0 5px 16px rgba(20,37,77,.35); transition: transform .18s ease, background .18s ease; }
-.market-marker span { position: absolute; left: 26px; top: 0; min-width: 23px; height: 23px; display: grid; place-items: center; padding: 0 5px; border-radius: 999px; background: var(--navy); color: #fff; font-size: .66rem; font-weight: 900; box-shadow: var(--shadow); }
-.market-marker:hover::before, .market-marker[aria-pressed="true"]::before { transform: scale(1.45); background: var(--fruit); }
-.market-feature { padding: 34px; min-height: 650px; display: flex; flex-direction: column; justify-content: center; border-radius: 26px; background: var(--navy); color: #fff; }
-.market-index { color: var(--green); font: 900 .78rem/1 "Nunito", sans-serif; letter-spacing: .14em; }
-.status-chip { width: fit-content; margin-top: 22px; padding: 7px 11px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; color: #d7efac; font-size: .72rem; font-weight: 800; text-transform: uppercase; }
-.market-feature h3 { margin: 18px 0 0; color: #fff; font: 900 clamp(2.7rem, 4vw, 4.5rem)/.95 "Nunito", sans-serif; letter-spacing: -.045em; }
-.market-feature > strong { margin-top: 14px; color: rgba(255,255,255,.9); }
-.market-feature p { margin: 13px 0 0; color: rgba(255,255,255,.65); }
-.market-feature .text-link { margin-top: 30px; color: #fff; }
+.market-map-frame { min-height: 690px; position: relative; display: grid; place-items: center; overflow: hidden; border-radius: 26px; background: radial-gradient(circle at 53% 48%, rgba(143,187,63,.16), transparent 26%), linear-gradient(155deg, #0b1732, #21366b); isolation: isolate; }
+.market-map-frame::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: radial-gradient(rgba(255,255,255,.13) 1px, transparent 1px); background-size: 24px 24px; mask-image: linear-gradient(135deg, #000, transparent 75%); }
+.market-map-frame > img { width: min(91%, 690px); height: 90%; position: relative; z-index: -1; object-fit: contain; opacity: .28; filter: invert(1) sepia(.18) saturate(.7) hue-rotate(22deg); }
+.map-orbit { position: absolute; z-index: -1; border: 1px solid rgba(143,187,63,.18); border-radius: 50%; animation: orbit-pulse 4s ease-in-out infinite; }
+.orbit-one { width: 330px; height: 330px; left: 26%; top: 29%; }
+.orbit-two { width: 460px; height: 460px; left: 18%; top: 20%; animation-delay: -2s; }
+@keyframes orbit-pulse { 50% { transform: scale(1.04); opacity: .45; } }
+.map-region-label { position: absolute; z-index: 2; color: rgba(255,255,255,.42); font-size: .65rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+.central-label { left: 27%; top: 57%; }
+.caribbean-label { left: 58%; top: 30%; }
+.market-marker { width: 38px; height: 38px; position: absolute; left: var(--x); top: var(--y); z-index: 3; display: grid; place-items: center; transform: translate(-50%,-50%); border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
+.market-marker::before { content: ""; width: 12px; height: 12px; border: 3px solid #fff; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px rgba(143,187,63,.15), 0 8px 18px rgba(0,0,0,.42); transition: transform .18s ease, background .18s ease; }
+.market-marker span { position: absolute; left: 22px; top: -2px; min-width: 22px; height: 22px; display: grid; place-items: center; padding: 0 5px; border-radius: 999px; background: #fff; color: var(--navy); font-size: .62rem; font-weight: 900; box-shadow: var(--shadow); }
+.market-marker b { position: absolute; left: 21px; bottom: -19px; width: max-content; max-width: 150px; padding: 6px 9px; opacity: 0; pointer-events: none; border-radius: 8px; background: rgba(255,255,255,.96); color: var(--navy); font-size: .67rem; box-shadow: var(--shadow); transform: translateY(4px); transition: opacity .18s ease, transform .18s ease; }
+.market-marker:hover::before, .market-marker[aria-pressed="true"]::before { transform: scale(1.55); background: var(--fruit); }
+.market-marker:hover b, .market-marker[aria-pressed="true"] b { opacity: 1; transform: none; }
+.market-feature { padding: 38px; min-height: 690px; display: flex; flex-direction: column; justify-content: center; border-radius: 26px; background: linear-gradient(160deg, var(--green-soft), #fff); color: var(--ink); }
+.market-index { color: var(--green-dark); font: 900 .78rem/1 "Nunito", sans-serif; letter-spacing: .14em; }
+.status-chip { width: fit-content; margin-top: 22px; padding: 7px 11px; border: 1px solid rgba(33,54,107,.14); border-radius: 999px; background: rgba(255,255,255,.66); color: var(--green-dark); font-size: .7rem; font-weight: 900; text-transform: uppercase; }
+.market-feature h3 { margin: 18px 0 0; color: var(--navy); font: 900 clamp(2.7rem, 4vw, 4.5rem)/.95 "Nunito", sans-serif; letter-spacing: -.045em; }
+.market-feature > strong { margin-top: 14px; color: var(--navy); }
+.market-feature > p { margin: 13px 0 0; color: var(--muted); }
+.market-partner-slot { margin-top: 25px; padding: 18px; display: grid; border: 1px dashed #b7c795; border-radius: 15px; background: rgba(255,255,255,.7); }
+.market-partner-slot span { color: var(--green-dark); font-size: .68rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.market-partner-slot strong { margin-top: 5px; color: var(--navy); font: 900 1.15rem/1.1 "Nunito", sans-serif; }
+.market-partner-slot small { margin-top: 6px; color: var(--muted); font-size: .73rem; }
+.market-feature-actions { margin-top: 24px; display: flex; flex-direction: column; align-items: flex-start; gap: 15px; }
+.market-feature-actions .text-link { color: var(--navy); }
 .market-list { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; scroll-margin-top: 110px; }
-.market-card { padding: 20px; display: grid; grid-template-columns: 38px 1fr; gap: 12px; border: 1px solid var(--line); border-radius: 16px; background: var(--canvas); scroll-margin-top: 110px; }
+.market-card { min-height: 210px; padding: 20px; position: relative; display: grid; grid-template-columns: 38px 1fr; gap: 12px; border: 1px solid var(--line); border-radius: 18px; background: var(--canvas); scroll-margin-top: 110px; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease; }
+.market-card:hover { transform: translateY(-3px); border-color: #b9c1cb; box-shadow: var(--shadow); }
 .market-card:target, .market-card.is-active { border-color: var(--green); background: var(--green-soft); box-shadow: 0 0 0 2px rgba(143,187,63,.18); }
+.market-card small { color: var(--muted); font-size: .63rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
 .market-card h3 { margin: 0; color: var(--navy); font: 900 1.02rem/1.1 "Nunito", sans-serif; }
 .market-card strong { display: block; margin-top: 5px; color: var(--green-dark); font-size: .72rem; }
 .market-card p { margin: 8px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.45; }
+.market-card-arrow { position: absolute; right: 16px; top: 16px; color: var(--navy); }
+.market-card-arrow svg { width: 17px; height: 17px; }
 
-.market-evidence { margin: 46px 0 36px; padding: clamp(40px, 6vw, 70px); border-radius: var(--radius-lg); background: linear-gradient(140deg, var(--navy-3), var(--navy)); color: #fff; box-shadow: var(--shadow-lg); }
-.evidence-lead { display: grid; grid-template-columns: minmax(0, .8fr) minmax(360px, 1.2fr); gap: 56px; align-items: end; }
-.evidence-lead h2 { margin: 14px 0 0; color: #fff; font: 900 clamp(2.8rem, 5vw, 5.2rem)/.95 "Nunito", sans-serif; letter-spacing: -.05em; }
+.market-evidence { margin: 46px 0 36px; padding: clamp(40px, 6vw, 70px); overflow: hidden; border-radius: var(--radius-lg); background: radial-gradient(circle at 78% 26%, rgba(143,187,63,.17), transparent 29%), linear-gradient(140deg, var(--navy-3), var(--navy)); color: #fff; box-shadow: var(--shadow-lg); }
+.evidence-kicker { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.evidence-kicker > span:last-child { padding: 8px 13px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; color: rgba(255,255,255,.68); font-size: .75rem; font-weight: 800; }
+.evidence-lead { margin-top: 24px; display: grid; grid-template-columns: minmax(0, .95fr) minmax(360px, 1.05fr); gap: 56px; align-items: end; }
+.evidence-lead h2 { margin: 0; color: #fff; font: 900 clamp(3rem, 5.3vw, 5.6rem)/.93 "Nunito", sans-serif; letter-spacing: -.055em; }
 .evidence-lead p { margin: 0; color: rgba(255,255,255,.7); font-size: 1.07rem; }
-.evidence-grid { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,.18); border-bottom: 1px solid rgba(255,255,255,.18); }
+.evidence-world { min-height: 510px; margin-top: 42px; position: relative; display: grid; place-items: center; overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 28px; background: radial-gradient(circle at 52% 48%, rgba(143,187,63,.18), transparent 32%), rgba(255,255,255,.035); }
+.evidence-world::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px); background-size: 24px 24px; mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent); }
+.evidence-world > img { width: 92%; position: relative; opacity: .19; filter: invert(1) sepia(.15) saturate(.6) hue-rotate(24deg); }
+.world-share { width: 250px; aspect-ratio: 1; position: absolute; left: 50%; top: 50%; display: grid; place-content: center; transform: translate(-50%,-50%); border: 1px solid rgba(143,187,63,.65); border-radius: 50%; background: rgba(13,26,56,.86); box-shadow: 0 0 0 18px rgba(143,187,63,.06), 0 0 0 40px rgba(143,187,63,.035); text-align: center; }
+.world-share span, .world-share small { color: rgba(255,255,255,.62); font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+.world-share strong { margin: 8px 0; display: flex; align-items: center; justify-content: center; gap: 10px; color: #fff; font: 900 3rem/1 "Nunito", sans-serif; letter-spacing: -.06em; }
+.world-share s { color: rgba(255,255,255,.42); font-size: 1.75rem; text-decoration-thickness: 2px; }
+.world-share i { color: var(--green); font-size: 1.2rem; font-style: normal; }
+.world-pulse { max-width: 210px; position: absolute; padding: 12px 14px; border: 1px solid rgba(255,255,255,.16); border-radius: 14px; background: rgba(13,26,56,.88); color: rgba(255,255,255,.65); font-size: .68rem; box-shadow: var(--shadow); }
+.world-pulse::before { content: ""; width: 9px; height: 9px; position: absolute; left: -5px; top: 19px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 6px rgba(143,187,63,.16); }
+.world-pulse strong { display: block; color: #fff; font: 900 1.55rem/1 "Nunito", sans-serif; }
+.pulse-europe { left: 61%; top: 18%; }
+.pulse-latam { left: 29%; bottom: 15%; }
+.evidence-grid { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(255,255,255,.14); border-radius: 22px; overflow: hidden; }
 .evidence-grid div { padding: 30px; }
-.evidence-grid div + div { border-left: 1px solid rgba(255,255,255,.18); }
-.evidence-grid strong, .evidence-grid span { display: block; }
-.evidence-grid strong { color: var(--green); font: 900 clamp(3rem, 6vw, 5.7rem)/1 "Nunito", sans-serif; letter-spacing: -.06em; }
-.evidence-grid span { margin-top: 8px; color: rgba(255,255,255,.68); }
+.evidence-grid div + div { border-left: 1px solid rgba(255,255,255,.14); }
+.evidence-grid strong, .evidence-grid span, .evidence-grid small { display: block; }
+.evidence-grid strong { color: var(--green); font: 900 clamp(2.4rem, 4.2vw, 4.4rem)/1 "Nunito", sans-serif; letter-spacing: -.06em; }
+.evidence-grid span { margin-top: 10px; color: rgba(255,255,255,.72); }
+.evidence-grid small { margin-top: 14px; color: rgba(255,255,255,.42); font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
 .source-note { margin: 22px 0 0; color: rgba(255,255,255,.48); font-size: .76rem; }
 .source-note a { color: #d7efac; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
 .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -538,14 +622,38 @@ a.product-card:hover { transform: translateY(-4px); box-shadow: 0 26px 55px -35p
 .program-preview h2 { margin: 10px 0 0; color: #fff; font: 900 clamp(2.3rem, 4vw, 3.8rem)/1 "Nunito", sans-serif; letter-spacing: -.04em; }
 .program-preview p { max-width: 700px; color: rgba(255,255,255,.72); }
 .program-categories { display: flex; flex-wrap: wrap; gap: 9px; margin: 24px 0 30px; }
-.program-categories span { padding: 8px 13px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; font-size: .82rem; font-weight: 700; }
+.program-categories span, .program-categories a { padding: 8px 13px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; font-size: .82rem; font-weight: 700; transition: background .18s ease, color .18s ease; }
+.program-categories a:hover { background: #fff; color: var(--navy); }
+
+.product-dialog { width: min(960px, calc(100% - 32px)); max-height: min(760px, calc(100dvh - 32px)); padding: 0; overflow: hidden; border: 0; border-radius: 30px; background: #fff; box-shadow: 0 45px 110px -35px rgba(5,13,34,.72); }
+.product-dialog::backdrop { background: rgba(13,26,56,.72); backdrop-filter: blur(8px); }
+.product-dialog[open] { display: grid; grid-template-columns: minmax(330px, .9fr) minmax(360px, 1.1fr); }
+.product-dialog > form { position: absolute; right: 18px; top: 18px; z-index: 5; }
+.dialog-close { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--navy); font-size: 1.5rem; cursor: pointer; box-shadow: var(--shadow); }
+.dialog-product-stage { min-height: 560px; display: grid; place-items: center; padding: 48px; background: radial-gradient(circle, var(--green-soft), #f7f9f3 56%, #eef1f3); }
+.dialog-product-stage img { width: 100%; max-height: 470px; object-fit: contain; mix-blend-mode: multiply; filter: drop-shadow(0 26px 25px rgba(20,37,77,.18)); }
+.dialog-product-copy { padding: 72px 54px 50px; display: flex; flex-direction: column; justify-content: center; }
+.dialog-product-copy h2 { margin: 14px 0 0; color: var(--navy); font: 900 clamp(2.8rem, 5vw, 4.8rem)/.95 "Nunito", sans-serif; letter-spacing: -.05em; }
+.dialog-product-copy > p { margin: 20px 0 0; color: var(--muted); }
+.dialog-product-size { margin-top: 22px; width: fit-content; padding: 8px 13px; border-radius: 999px; background: var(--green-soft); color: var(--green-dark); }
+.dialog-product-copy .actions { align-items: flex-start; }
+.dialog-product-copy .text-link { width: 100%; margin-top: 8px; }
 
 .pdp { padding: 54px 0 96px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(390px, .8fr); gap: clamp(44px, 7vw, 92px); align-items: start; }
 .pdp-stage { min-height: 620px; display: grid; place-items: center; padding: 48px; border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow); }
-.pdp-stage img { width: 100%; max-height: 530px; object-fit: contain; mix-blend-mode: multiply; }
+.product-spotlight .pdp-stage { position: relative; overflow: hidden; background: radial-gradient(circle at 50% 46%, #fff 0 26%, var(--green-soft) 27% 50%, #fff 51%); }
+.product-spotlight .pdp-stage::before, .product-spotlight .pdp-stage::after { content: ""; position: absolute; border: 1px solid rgba(33,54,107,.1); border-radius: 50%; }
+.product-spotlight .pdp-stage::before { width: 72%; aspect-ratio: 1; }
+.product-spotlight .pdp-stage::after { width: 88%; aspect-ratio: 1; }
+.pdp-stage img { width: 100%; max-height: 530px; position: relative; z-index: 2; object-fit: contain; mix-blend-mode: multiply; filter: drop-shadow(0 28px 26px rgba(20,37,77,.2)); }
+.pdp-stage-note { position: absolute; left: 28px; top: 27px; z-index: 3; color: var(--green-dark); font-size: .72rem; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
+.pdp-stage-number { position: absolute; right: 28px; bottom: 19px; color: rgba(33,54,107,.09); font: 900 7rem/1 "Nunito", sans-serif; }
 .pdp-copy { padding-top: 36px; }
 .pdp-copy h1 { margin-top: 16px; font-size: clamp(3.3rem, 5.5vw, 5.5rem); }
 .pdp-lead { margin: 22px 0 0; color: var(--muted); font-size: 1.18rem; }
+.pdp-proof { margin-top: 27px; display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.pdp-proof span { min-height: 92px; padding: 15px; display: flex; flex-direction: column; justify-content: center; border-radius: 15px; background: #fff; box-shadow: var(--shadow); color: var(--muted); font-size: .68rem; }
+.pdp-proof strong { color: var(--navy); font: 900 1.15rem/1 "Nunito", sans-serif; }
 .pack-size { margin-top: 24px; display: inline-flex; padding: 9px 15px; border-radius: 999px; background: var(--green-soft); color: var(--green-dark); font-weight: 900; }
 .fact-list { margin: 32px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
 .fact-list li { padding: 19px 0; border-bottom: 1px solid var(--line); }
@@ -555,6 +663,10 @@ a.product-card:hover { transform: translateY(-4px); box-shadow: 0 26px 55px -35p
 .recipe-callout img { width: 180px; aspect-ratio: 4/3; object-fit: cover; border-radius: 16px; }
 .recipe-callout h2 { margin: 3px 0 0; color: var(--navy); font: 900 1.8rem/1.08 "Nunito", sans-serif; }
 .recipe-callout p { margin: 8px 0 0; color: var(--muted); }
+.recipe-callout.elevated { position: relative; overflow: hidden; border: 1px solid #e4dac7; box-shadow: var(--shadow); }
+.recipe-callout.elevated::before { content: ""; position: absolute; width: 220px; height: 220px; right: -110px; top: -110px; border-radius: 50%; background: rgba(143,187,63,.18); }
+.pdp-related { margin: 10px 0 96px; }
+.related-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
 
 .recipe-index { padding: 52px 0 26px; }
 .recipe-article { padding: 74px 0; display: grid; grid-template-columns: minmax(0, .95fr) minmax(420px, 1.05fr); gap: clamp(42px, 7vw, 88px); border-top: 1px solid var(--line); scroll-margin-top: 110px; }
@@ -619,6 +731,7 @@ a.product-card:hover { transform: translateY(-4px); box-shadow: 0 26px 55px -35p
   .primary-nav { gap: 17px; }
   .primary-nav a { font-size: .91rem; }
   .hero { min-height: 0; grid-template-columns: 1fr; }
+  .product-showcase-hero, .recipe-showcase-hero { grid-template-columns: 1fr 1fr; }
   .hero-copy { max-width: 720px; }
   .hero-stage { min-height: 430px; }
   .category-grid, .product-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
@@ -676,6 +789,12 @@ a.product-card:hover { transform: translateY(-4px); box-shadow: 0 26px 55px -35p
   .route-grid { grid-template-columns: 1fr; }
   .contact-routes { grid-template-columns: 1fr 1fr; }
   .brand-vision, .afi-panel, .market-intro, .market-map-layout, .evidence-lead, .partner-heading { grid-template-columns: 1fr; }
+  .product-showcase-hero, .recipe-showcase-hero { min-height: 0; grid-template-columns: 1fr; }
+  .product-hero-visual, .recipe-hero-visual { min-height: 500px; }
+  .product-hero-visual { order: -1; }
+  .product-dialog[open] { grid-template-columns: 1fr; overflow-y: auto; }
+  .dialog-product-stage { min-height: 420px; }
+  .dialog-product-copy { padding: 48px 34px 42px; }
   .vision-visual { min-height: 480px; order: -1; }
   .afi-brand { max-width: 390px; }
   .chapter-grid, .process-grid { grid-template-columns: 1fr; }
@@ -683,6 +802,8 @@ a.product-card:hover { transform: translateY(-4px); box-shadow: 0 26px 55px -35p
   .market-feature { min-height: 0; }
   .evidence-grid { grid-template-columns: 1fr; }
   .evidence-grid div + div { border-left: 0; border-top: 1px solid rgba(255,255,255,.18); }
+  .evidence-world { min-height: 470px; }
+  .world-share { width: 220px; }
   .roadmap-ribbon { grid-template-columns: auto 1fr; }
   .roadmap-ribbon i { display: none; }
   .footer-grid { grid-template-columns: 1.3fr 1fr 1fr; }
@@ -727,6 +848,9 @@ a.product-card:hover { transform: translateY(-4px); box-shadow: 0 26px 55px -35p
   .catalog-search input { padding-right: 100px; }
   .pdp { padding-top: 32px; }
   .pdp-stage { min-height: 370px; padding: 24px; }
+  .pdp-stage-number { font-size: 5rem; }
+  .pdp-proof { grid-template-columns: 1fr; }
+  .related-grid { grid-template-columns: 1fr 1fr; }
   .recipe-callout { grid-template-columns: 1fr; }
   .recipe-callout img { width: 100%; }
   .recipe-article { padding: 56px 0; }
@@ -742,12 +866,36 @@ a.product-card:hover { transform: translateY(-4px); box-shadow: 0 26px 55px -35p
   .afi-facts, .role-grid, .partner-pillars, .market-list { grid-template-columns: 1fr; }
   .market-explorer { padding: 22px 16px; }
   .market-map-frame { display: none; }
-  .market-feature { display: none; }
+  .market-feature { min-height: 0; display: flex; padding: 30px 22px; }
   .market-map-layout { display: block; }
-  .market-list { margin-top: 0; }
+  .market-list { margin-top: 14px; }
+  .skip-map { display: none; }
   .market-intro { gap: 18px; }
   .market-intro > p { border-left: 0; border-top: 4px solid var(--green); }
   .partner-story, .market-evidence { padding: 38px 22px; }
+  .evidence-kicker { align-items: flex-start; flex-direction: column; }
+  .evidence-world { min-height: 390px; margin-inline: -8px; }
+  .evidence-world > img { width: 125%; max-width: none; }
+  .world-share { width: 180px; }
+  .world-share strong { font-size: 2.3rem; }
+  .world-pulse { max-width: 150px; padding: 9px 11px; }
+  .pulse-europe { left: 57%; top: 10%; }
+  .pulse-latam { left: 8%; bottom: 8%; }
+  .product-showcase-hero, .recipe-showcase-hero { border-radius: 24px; }
+  .product-hero-copy, .recipe-hero-copy { padding: 36px 22px 42px; }
+  .product-hero-copy h1, .recipe-hero-copy h1 { font-size: clamp(2.9rem, 13vw, 4.5rem); }
+  .product-hero-kpis, .recipe-hero-facts { grid-template-columns: 1fr; gap: 13px; }
+  .product-hero-kpis span, .recipe-hero-facts span { padding-top: 13px; }
+  .product-hero-visual, .recipe-hero-visual { min-height: 330px; }
+  .product-hero-visual { padding: 30px 18px; }
+  .range-seal { width: 92px; height: 92px; right: 16px; top: 16px; font-size: .57rem; }
+  .range-seal strong { font-size: 2rem; }
+  .recipe-hero-visual > span { left: 22px; bottom: 22px; }
+  .product-dialog { max-height: calc(100dvh - 18px); }
+  .dialog-product-stage { min-height: 300px; padding: 32px; }
+  .dialog-product-stage img { max-height: 270px; }
+  .dialog-product-copy { padding: 38px 22px 32px; }
+  .dialog-product-copy h2 { font-size: 2.8rem; }
   .role-card { min-height: 275px; padding: 28px; }
   .roadmap-ribbon { grid-template-columns: 1fr; }
   .footer-brand { grid-column: auto; }

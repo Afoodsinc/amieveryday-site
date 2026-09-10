@@ -21,7 +21,7 @@ The consumer + retail-partner website of **ami anytime**, the own-brand grocery 
 ```
 /                 EN pages: index.html about.html products.html product-tomato-paste.html recipes.html where-to-buy.html partners.html contact.html
 /es/              ES twins, same filenames
-/img/             WebP assets plus the local Americas SVG and approved American Foods logo PNGs
+/img/             WebP assets, local Americas SVG, optimized CC0 world-map PNG, and approved American Foods logo PNGs
 CNAME robots.txt sitemap.xml favicon.svg .nojekyll
 docs/reviews/     CTO + UX review reports (2026-09-09) — the ranked backlog
 tools/legacy/     the ORIGINAL Python generator + CSS template (superseded; later patches were lost). Reference only.

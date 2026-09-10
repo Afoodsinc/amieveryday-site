@@ -46,6 +46,7 @@ def check(page: Path):
     assert 'href="#"' not in text, f"{page}: placeholder link"
     assert "https://americanfoods.com" not in text, f"{page}: incorrect AFI organization URL"
     assert "®" not in text, f"{page}: registered mark used without registration approval"
+    assert "no launch announced" not in text.lower() and "lanzamiento no anunciado" not in text.lower(), f"{page}: stale no-launch language"
     assert "site-refresh.css" not in text, f"{page}: legacy stylesheet"
     assert "gen-basket" not in text and "gen-shopper" not in text and "gen-aisle" not in text, f"{page}: obsolete art"
     for block in parser.json_blocks: json.loads(block)
@@ -57,17 +58,23 @@ def check(page: Path):
     if page.name=="where-to-buy.html":
         marker_ids=[part.split('"',1)[0] for part in text.split('data-market="')[1:]]
         card_ids=[part.split('"',1)[0] for part in text.split('data-market-card="')[1:]]
-        assert len(marker_ids)==11 and len(card_ids)==11, f"{page}: expected 11 market markers and cards"
-        assert len(set(marker_ids))==11 and set(marker_ids)==set(card_ids), f"{page}: market IDs must be unique and paired"
+        assert len(marker_ids)==18 and len(card_ids)==18, f"{page}: expected 18 market markers and cards"
+        assert len(set(marker_ids))==18 and set(marker_ids)==set(card_ids), f"{page}: market IDs must be unique and paired"
         assert "cartocdn" not in text and "leaflet" not in text.lower(), f"{page}: map must not make third-party tile requests"
+        assert text.count('data-market-filter=')==4, f"{page}: expected four market filters"
+        assert "Partner applications open" in text or "Postulaciones de socios abiertas" in text, f"{page}: missing partnership status"
     if page.name=="partners.html":
         assert 'id="retailers"' in text and 'id="distributors"' in text, f"{page}: missing partner audience journey"
+        assert "2009" in text and "2024" in text and "world-map.png" in text, f"{page}: missing long-term global evidence"
+    if page.name=="products.html":
+        assert text.count("data-quick-product") == 29, f"{page}: every product must open a quick view"
+        assert 'id="product-dialog"' in text, f"{page}: missing product quick view"
 
 def main():
     pages=[ROOT/name for name in PAGES]+[ROOT/"es"/name for name in PAGES]
     for page in pages: check(page)
     assert (ROOT/"CNAME").read_text(encoding="utf-8").strip()=="amianytime.com"
-    for required in ("america-map.svg","afi-logo-white.png","afi-logo-navy.png"):
+    for required in ("america-map.svg","world-map.png","afi-logo-white.png","afi-logo-navy.png"):
         assert (ROOT/"img"/required).exists(), f"missing required brand asset: {required}"
     assert len(list(ROOT.glob("*.html")))==9
     print(f"OK: {len(pages)} bilingual pages, local references, metadata, images, and JSON-LD")
