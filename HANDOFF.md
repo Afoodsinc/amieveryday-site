@@ -71,3 +71,4 @@ Frank Stanzione (CEO, owner, non-technical — wants numbers and decisions, not 
 - 2026-09-09 — connected the tomato-paste detail page to its real recipe and removed false PDP tabs, dead social links and placeholder legal links as clickable controls.
 - 2026-09-09 — recorded the official food-brand benchmark, adopted patterns, exclusions and acceptance standard in `docs/reviews/benchmark-refresh-2026-09-09.md`.
 - 2026-09-09 — completed a full top-standard redesign with commercial/brand, bilingual-content, and technical-QA agent reviews; rebuilt the shopper and retailer flows, removed obsolete AI packaging art and unverified experiences, and consolidated all pages into one deterministic bilingual source.
+- 2026-09-09 — optically centered the homepage product stage by removing the decorative tilt and centering both the white panel and product lineup across desktop and mobile layouts.

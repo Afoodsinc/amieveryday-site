@@ -203,7 +203,10 @@ button { color: inherit; }
 .button.navy { background: var(--navy); color: #fff; }
 .button.ghost { border-color: var(--line); background: #fff; color: var(--navy); }
 .hero-stage {
+  width: 100%;
+  max-width: 760px;
   min-height: 505px;
+  justify-self: center;
   padding: 30px 24px 18px;
   display: flex;
   flex-direction: column;
@@ -212,10 +215,10 @@ button { color: inherit; }
   background: #fff;
   box-shadow: 0 30px 80px -45px rgba(0,0,0,.7);
   color: var(--ink);
-  transform: rotate(1.2deg);
 }
 .hero-stage .stage-label { display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.hero-stage img { width: 100%; height: auto; margin: auto 0; object-fit: contain; transform: rotate(-1.2deg); }
+.hero-stage picture { width: 100%; display: grid; place-items: center; }
+.hero-stage img { width: 100%; height: auto; margin: auto; object-fit: contain; object-position: center; }
 
 .proof-strip {
   margin: -31px auto 0;
