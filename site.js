@@ -79,6 +79,8 @@
     const dialogTitle = document.getElementById('product-dialog-title');
     const dialogSize = document.getElementById('product-dialog-size');
     const dialogFull = document.getElementById('product-dialog-full');
+    const productContact = productDialog.querySelector('a[href*="#product-question"]');
+    const productContactBase = productContact?.getAttribute('href') || '';
     let opener = null;
     quickProducts.forEach((product) => product.addEventListener('click', () => {
       opener = product;
@@ -86,6 +88,10 @@
       if (dialogCategory) dialogCategory.textContent = product.dataset.categoryLabel;
       if (dialogTitle) dialogTitle.textContent = product.dataset.name;
       if (dialogSize) dialogSize.textContent = product.dataset.size;
+      if (productContact && productContactBase) {
+        const path = productContactBase.split('#')[0];
+        productContact.href = `${path}?product=${encodeURIComponent(`${product.dataset.name}, ${product.dataset.size}`)}#product-question`;
+      }
       if (dialogFull) {
         dialogFull.hidden = !product.dataset.full;
         if (product.dataset.full) dialogFull.href = product.dataset.full;
@@ -108,6 +114,8 @@
     const name = marketFeature.querySelector('h3');
     const status = marketFeature.querySelector(':scope > strong');
     const body = marketFeature.querySelector(':scope > p');
+    const marketApply = marketFeature.querySelector('.market-apply');
+    const marketApplyBase = marketApply?.getAttribute('href') || '';
     const selectMarket = (marker) => {
       markers.forEach((item) => item.setAttribute('aria-pressed', String(item === marker)));
       cards.forEach((card) => {
@@ -119,6 +127,10 @@
       if (name) name.textContent = marker.dataset.name;
       if (status) status.textContent = marker.dataset.status;
       if (body) body.textContent = marker.dataset.body;
+      if (marketApply && marketApplyBase) {
+        const path = marketApplyBase.split('#')[0];
+        marketApply.href = `${path}?market=${encodeURIComponent(marker.dataset.name)}#distribution-inquiry`;
+      }
     };
     markers.forEach((marker) => marker.addEventListener('click', () => selectMarket(marker)));
     cards.forEach((card) => card.addEventListener('click', (event) => {
@@ -127,6 +139,7 @@
       if (!marker) return;
       selectMarket(marker);
       if (window.matchMedia('(max-width: 560px)').matches) {
+        marketFeature.focus({ preventScroll: true });
         marketFeature.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
       }
     }));
@@ -144,4 +157,33 @@
     const selected = markers.find((marker) => marker.getAttribute('aria-pressed') === 'true') || markers[0];
     if (selected) selectMarket(selected);
   }
+
+  const pdpContact = document.querySelector('.pdp-copy a[href*="#product-question"]');
+  if (pdpContact) {
+    const productName = document.querySelector('.pdp-copy h1')?.textContent.trim();
+    const productSize = document.querySelector('.pdp-proof strong')?.textContent.trim();
+    if (productName && productSize) {
+      const path = pdpContact.getAttribute('href').split('#')[0];
+      pdpContact.href = `${path}?product=${encodeURIComponent(`${productName}, ${productSize}`)}#product-question`;
+    }
+  }
+
+  const contactParams = new URLSearchParams(window.location.search);
+  const isSpanish = document.documentElement.lang === 'es';
+  const contextRoutes = [
+    { key: 'product', route: 'product-question', subject: isSpanish ? 'Consulta sobre un producto ami' : 'ami product question' },
+    { key: 'market', route: 'distribution-inquiry', subject: isSpanish ? 'Alianza de distribución ami' : 'ami distribution partnership' },
+  ];
+  contextRoutes.forEach(({ key, route, subject }) => {
+    const value = contactParams.get(key)?.trim();
+    const card = document.getElementById(route);
+    const link = card?.querySelector('a[href^="mailto:"]');
+    if (!value || !card || !link) return;
+    const mailbox = link.getAttribute('href').split('?')[0];
+    link.href = `${mailbox}?subject=${encodeURIComponent(`${subject} — ${value}`)}`;
+    const context = document.createElement('span');
+    context.className = 'contact-context';
+    context.textContent = `${isSpanish ? 'Selección' : 'Selected'}: ${value}`;
+    link.before(context);
+  });
 })();
