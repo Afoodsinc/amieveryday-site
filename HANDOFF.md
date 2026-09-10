@@ -17,23 +17,24 @@ Written by Claude (Frank Stanzione's chief-of-staff agent) for the next builder 
 | Project record (decisions, history) | Dropbox: `Frank Claude AI/Projects/ami-website.md` |
 | Company contact facts used on the site | 2300 NW 92nd Ave, Doral, FL 33172 · PH Plaza del Este, Torre A, Piso 13, Costa del Este, Panamá · +1 877 894 7675 · +507 310 7576 · info@afoodsinc.com (**mailbox unverified** — confirm with Jorge, AFI IT) |
 
-## 2. What is built (all live)
-- 16 pages: Home, About, Products, Product detail (tomato paste), Recipes (6 EN/ES), Where to buy (Leaflet map, 11 markets: launching Miami/S. Florida, Panamá, Dominican Republic; next GT, SV, HN, PR, Bahamas, Jamaica, Aruba, T&T), Partners (program, inquiry form), Contact.
-- Products page: **"Launch range 2026" section** (`#launch`, 29 items with final art and metric sizes) followed by the full 149-product program by 8 aisles (most items "coming soon", placeholder icons).
-- Done 2026-09-09 from the CTO/UX reviews: lazy-loaded images with dimensions, hero preload, H1s, JSON-LD (Organization, BreadcrumbList, ItemList of 29, Product), twitter card, AA contrast, skip link + `#main`, `aria-expanded` on the hamburger, SRI on Leaflet, mismatched art removed, PDP language toggle fixed. Home first-load images 1,207 KB → 88 KB.
-- EN/ES toggle in the top bar on every page; hamburger menu on mobile (inline JS on the button).
+## 2. What is built (2026-09-09 redesign)
+- 16 bilingual pages: Home, Products, tomato-paste detail, Recipes (6), Our brand, Where to buy, For retailers, and Contact.
+- Shopper-first flow: product-led Home → searchable 29-product launch range → product/recipe → honest availability state. The future 149-SKU program is no longer presented as public catalogue truth.
+- Retailer flow is separate: market context → category and requirement review → launch-plan conversation.
+- The obsolete `gen-basket`, `gen-aisle`, and `gen-shopper` art is no longer referenced. Exact individual packshots are used for catalogue truth; current-art lifestyle images are limited to supporting story and recipe moments.
+- Empty map, newsletter capture, fake forms, placeholder legal links, unverified availability, commercial terms, guarantees, and superlative price/quality claims were removed.
+- Product search and aisle filters work in English and Spanish. Mobile navigation closes on link selection, Escape, and desktop resize. Content remains visible if JavaScript fails.
+- Shared source: `site.css`, `site.js`, and stdlib-only `tools/build_site.py`. Structural QA is automated in `tools/check_site.py`; publish output remains flat static HTML.
 
-## 3. How the site was produced, and why there is no build
-A Python generator (`gen.py` + `template.html` + `skus.json`) produced the pages; the working copy lived in a temporary folder that was wiped. `tools/legacy/` holds the ORIGINAL versions recovered from the session log — later patches (Home nav, launch section, image swaps, CTO fixes) are NOT in them. **The HTML in this repo is the truth.** Recommended next step (CTO review #5): rebuild a stdlib-only Python 3.9 `build.py` with `templates/` + `content/*.json` that regenerates exactly the current HTML, commit its output, keep the flat layout. No Node on Frank's Mac; Codex cloud may use whatever it likes as long as committed output stays flat HTML.
+## 3. How the site is produced
+`tools/build_site.py` is the maintained bilingual source and regenerates all 16 pages plus the 404 page with Python 3.9 standard-library code. The generated HTML is committed, so GitHub Pages still publishes directly without a build service. `tools/legacy/` is historical reference only and must not be used to publish.
 
 ## 4. Open decisions (Frank / Fredy — do not decide for them)
-1. **Hero copy.** UX proposal: EN "Always with you. Never over budget." + one line on what ami is; ES "Siempre contigo. Nunca fuera de presupuesto." CTAs "See what's on shelf" / "For retailers". Current: "Global flavors. Honest prices. Every day."
-2. **Products page structure.** UX proposal: "On shelf now — 29" + the 149 program as a department index (aisle, count, 3 examples) instead of ~100 grey cards. Frank previously asked to keep the original design → needs his yes.
-3. **Forms backend.** All forms are `mailto:` (fail silently on many phones). Options: Formspree free tier (Frank opens account) or an n8n webhook (AFI has n8n Cloud, unproven). Add success state + consent line + Privacy page.
-4. **Legal pages.** Privacy/Terms links are `#`. Draft EN/ES naming CARTO/OSM map tiles, Google Fonts, form vendor; Frank approves.
-5. **Catalogue truth.** Deck = 29 launch items in metric sizes (400 g cans, 170 g tuna, 340/425 g corn, 284 g mushrooms, 425 g peach, 340 g ketchup, 500 ml soy, 85 g noodles, 200 ml / 1 L drinks). Workbook = 149 SKUs in US sizes, missing whole-peeled/chopped tomatoes 400 g, baby corn, light/dark soy, pineapple drink. Ask Jorge/Fredy which list is the listing truth before rebuilding the catalogue data.
-6. **Where-to-buy pre-launch copy** ("one retail partner per country; store list published the week ami reaches the shelf; leave your email"). Delete "Hispanic supermarkets and independents" (contradicts exclusivity).
-7. **One partner sentence** everywhere: "ami is licensed to one retail partner per country, category by category, with price shielding written into the license." Site currently says "select few"/"one"/"single" inconsistently and "21 departments" vs 8 aisles.
+1. **Catalogue source reconciliation.** The current-art tuna assets show 140 g while the old handoff/deck summary said 170 g. The public page follows the pictured pack art at 140 g to avoid a visible contradiction, but Jorge/Fredy must confirm the commercial listing record. Baby Corn is 425 g on its individual packshot.
+2. **Forms backend.** Public calls to action use directed `mailto:` links. A real form requires an approved destination, owner, privacy/consent copy, and success state.
+3. **Legal pages.** No placeholder legal links are exposed. Privacy/terms pages still require owner/legal approval before publication.
+4. **Retail availability.** The site publishes an honest empty state until retailer names, stores, markets, and display permissions are confirmed.
+5. **Commercial terms.** Exclusivity, price protection, licensing, sourcing, registrations, certifications, mixed containers, and response-time promises remain owner/legal gated and are not public claims.
 
 ## 5. Backlog that needs no decision (ranked, from the reviews)
 - [x] Branded 404 page (`404.html` at root; GitHub Pages serves it).
@@ -69,3 +70,4 @@ Frank Stanzione (CEO, owner, non-technical — wants numbers and decisions, not 
 - 2026-09-09 — made the language switch and active navigation explicit to assistive technology and added Escape-to-close mobile navigation behavior.
 - 2026-09-09 — connected the tomato-paste detail page to its real recipe and removed false PDP tabs, dead social links and placeholder legal links as clickable controls.
 - 2026-09-09 — recorded the official food-brand benchmark, adopted patterns, exclusions and acceptance standard in `docs/reviews/benchmark-refresh-2026-09-09.md`.
+- 2026-09-09 — completed a full top-standard redesign with commercial/brand, bilingual-content, and technical-QA agent reviews; rebuilt the shopper and retailer flows, removed obsolete AI packaging art and unverified experiences, and consolidated all pages into one deterministic bilingual source.

@@ -13,7 +13,7 @@ The consumer + retail-partner website of **ami anytime**, the own-brand grocery 
 5. **Pricing doctrine**: never quote or compare against US national-brand prices on the site. Claims must be supportable ("lowest price" needs a qualifier or gets removed; that is a brand decision for Frank/Fredy, not the agent).
 6. **Do not touch** DNS, GoDaddy, GitHub Pages settings, or any domain. `frankstanzione.com` is personal and unrelated. These require the owner (Frank) with SMS codes.
 7. **No credentials in the repo**, no third-party scripts beyond the current allow-list (Google Fonts, cdnjs Leaflet with SRI, CARTO tiles). Adding a form backend or analytics: propose the vendor + exact snippet; Frank opens the account.
-8. **Keep the original design.** Frank explicitly asked to keep the existing look (navy/green, aisle colour system, card layouts). Improve within it; do not redesign without a request.
+8. **Preserve the current design system.** The 2026-09-09 top-standard redesign is the approved baseline: navy/green, aisle colours, product-first editorial layouts, exact pack art, and separate shopper/retailer journeys. Redesign only when Frank asks.
 9. **Images**: real packshots first (in `img/`, sourced from the designer's deck). Never reuse a packshot for a different product. AI lifestyle renders (`gen-*.webp`) are placeholders until real photography exists.
 10. Commit messages: plain English, one line, what changed and why. Always `git pull --rebase origin main` before pushing (GitHub sometimes commits `CNAME` from the settings UI).
 
@@ -26,10 +26,11 @@ CNAME robots.txt sitemap.xml favicon.svg .nojekyll
 docs/reviews/     CTO + UX review reports (2026-09-09) — the ranked backlog
 tools/legacy/     the ORIGINAL Python generator + CSS template (superseded; later patches were lost). Reference only.
 ```
-CSS lives inline in each page's `<style>` (identical across pages). Design tokens: navy `#253768`, navy-deep `#1B2A52`, green `#8FB944`, green-ink `#4E7A1F`, ink `#1C2430`, ink-3 `#66707D`; aisle colours veg `#5E9C3B`, tomato `#D8352C`, fruit `#F28C00`, corn `#F2B705`, sea `#2C7FB8`, dairy `#E9D9B5`, pantry `#C98A3B`, house `#7C8FA6`, care `#C77BA6`, frozen `#6FB8D8`. Fonts: Nunito 700–900 (display), DM Sans 400–700 (body), via Google Fonts.
+Shared CSS lives in `site.css`; interactions live in `site.js`; `tools/build_site.py` is the Python 3.9 source for all committed HTML. Design tokens: navy `#21366B`, navy-deep `#14254D`, green `#8FBB3F`, ink `#182238`; aisle colours tomato `#D83B35`, beans `#65983F`, corn `#E5AD18`, fruit `#ED8B2C`, sea `#3F86B8`, pantry `#B87838`. Fonts: Nunito 800–900 (display), DM Sans 400–800 (body), via Google Fonts.
 
 ## Definition of done for any change
 - Both languages updated; every `img/` reference resolves; images carry `width`/`height`, below-fold ones `loading="lazy"`.
 - One `<h1>` per page; JSON-LD still valid (`python3 -c` json.loads over every `ld+json` block).
 - `curl -I https://amianytime.com/<page>` returns 200 after push; no horizontal scroll at 360 px.
 - Note the change in `HANDOFF.md` → "Change log".
+- Run `python3 tools/build_site.py` and `python3 tools/check_site.py`; commit the flat HTML together with its source.
