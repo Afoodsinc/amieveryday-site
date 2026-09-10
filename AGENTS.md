@@ -12,7 +12,7 @@ The consumer + retail-partner website of **ami anytime**, the own-brand grocery 
 4. **Brand name is lowercase**: `ami`, `ami anytime`. Tagline: "always with you" / "siempre contigo".
 5. **Pricing doctrine**: never quote or compare against US national-brand prices on the site. Claims must be supportable ("lowest price" needs a qualifier or gets removed; that is a brand decision for Frank/Fredy, not the agent).
 6. **Do not touch** DNS, GoDaddy, GitHub Pages settings, or any domain. `frankstanzione.com` is personal and unrelated. These require the owner (Frank) with SMS codes.
-7. **No credentials in the repo**, no third-party scripts beyond the current allow-list (Google Fonts, cdnjs Leaflet with SRI, CARTO tiles). Adding a form backend or analytics: propose the vendor + exact snippet; Frank opens the account.
+7. **No credentials in the repo**, and no new third-party scripts beyond Google Fonts. The Americas roadmap is a local public-domain SVG and must remain free of external map or tile requests. Adding a form backend or analytics: propose the vendor + exact snippet; Frank opens the account.
 8. **Preserve the current design system.** The 2026-09-09 top-standard redesign is the approved baseline: navy/green, aisle colours, product-first editorial layouts, exact pack art, and separate shopper/retailer journeys. Redesign only when Frank asks.
 9. **Images**: real packshots first (in `img/`, sourced from the designer's deck). Never reuse a packshot for a different product. AI lifestyle renders (`gen-*.webp`) are placeholders until real photography exists.
 10. Commit messages: plain English, one line, what changed and why. Always `git pull --rebase origin main` before pushing (GitHub sometimes commits `CNAME` from the settings UI).
@@ -21,7 +21,7 @@ The consumer + retail-partner website of **ami anytime**, the own-brand grocery 
 ```
 /                 EN pages: index.html about.html products.html product-tomato-paste.html recipes.html where-to-buy.html partners.html contact.html
 /es/              ES twins, same filenames
-/img/             WebP assets (packshots new-*.webp, lifestyle new-life-*.webp, AI renders gen-*.webp, recipes recipe-*.webp, lineup.webp, new-lockup.webp, new-tagline.webp, new-badge-bestseller.webp)
+/img/             WebP assets plus the local Americas SVG and approved American Foods logo PNGs
 CNAME robots.txt sitemap.xml favicon.svg .nojekyll
 docs/reviews/     CTO + UX review reports (2026-09-09) — the ranked backlog
 tools/legacy/     the ORIGINAL Python generator + CSS template (superseded; later patches were lost). Reference only.

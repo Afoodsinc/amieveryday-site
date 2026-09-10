@@ -1,4 +1,4 @@
-# HANDOFF — ami anytime website · state as of 2026-09-09 13:00 ET
+# HANDOFF — ami anytime website · state as of 2026-09-09
 
 Written by Claude (Frank Stanzione's chief-of-staff agent) for the next builder (Codex). Everything needed to continue is in this repo, plus the two Dropbox folders named below for source art. Read `AGENTS.md` first for the rules.
 
@@ -18,9 +18,12 @@ Written by Claude (Frank Stanzione's chief-of-staff agent) for the next builder 
 | Company contact facts used on the site | 2300 NW 92nd Ave, Doral, FL 33172 · PH Plaza del Este, Torre A, Piso 13, Costa del Este, Panamá · +1 877 894 7675 · +507 310 7576 · info@afoodsinc.com (**mailbox unverified** — confirm with Jorge, AFI IT) |
 
 ## 2. What is built (2026-09-09 redesign)
-- 16 bilingual pages: Home, Products, tomato-paste detail, Recipes (6), Our brand, Where to buy, For retailers, and Contact.
-- Shopper-first flow: product-led Home → searchable 29-product launch range → product/recipe → honest availability state. The future 149-SKU program is no longer presented as public catalogue truth.
-- Retailer flow is separate: market context → category and requirement review → launch-plan conversation.
+- 16 bilingual pages: Home, Products, tomato-paste detail, Recipes (6), Our brand, Where to buy, For partners, and Contact.
+- Shopper-first flow: product-led Home → searchable 29-product launch range → product/recipe → honest availability roadmap. The broader category plan is clearly labeled as future ambition, not current catalogue truth.
+- Partner flow is separate and executive-ready: global private-label context → retailer/distributor role choice → distinct value stories → depth-before-breadth operating model → American Foods credibility → inquiry.
+- Where to buy now uses a local, privacy-safe Americas map and 11 accessible target-market cards. Every market is explicitly labeled as roadmap interest rather than current availability; future partner and store profiles have a defined home.
+- Homepage and Our Brand now tell the ami origin, international everyday-value ambition, disciplined market-by-market growth model, and American Foods ownership story.
+- `ami anytime™` is used sparingly while applications are pending; `®` is prohibited until registration is confirmed.
 - The obsolete `gen-basket`, `gen-aisle`, and `gen-shopper` art is no longer referenced. Exact individual packshots are used for catalogue truth; current-art lifestyle images are limited to supporting story and recipe moments.
 - Empty map, newsletter capture, fake forms, placeholder legal links, unverified availability, commercial terms, guarantees, and superlative price/quality claims were removed.
 - Product search and aisle filters work in English and Spanish. Mobile navigation closes on link selection, Escape, and desktop resize. Content remains visible if JavaScript fails.
@@ -33,7 +36,7 @@ Written by Claude (Frank Stanzione's chief-of-staff agent) for the next builder 
 1. **Catalogue source reconciliation.** The current-art tuna assets show 140 g while the old handoff/deck summary said 170 g. The public page follows the pictured pack art at 140 g to avoid a visible contradiction, but Jorge/Fredy must confirm the commercial listing record. Baby Corn is 425 g on its individual packshot.
 2. **Forms backend.** Public calls to action use directed `mailto:` links. A real form requires an approved destination, owner, privacy/consent copy, and success state.
 3. **Legal pages.** No placeholder legal links are exposed. Privacy/terms pages still require owner/legal approval before publication.
-4. **Retail availability.** The site publishes an honest empty state until retailer names, stores, markets, and display permissions are confirmed.
+4. **Retail availability.** The site publishes roadmap markets but no retailer or store availability. Add names, locations, partner ownership, or launch status only after confirmation and display approval.
 5. **Commercial terms.** Exclusivity, price protection, licensing, sourcing, registrations, certifications, mixed containers, and response-time promises remain owner/legal gated and are not public claims.
 
 ## 5. Backlog that needs no decision (ranked, from the reviews)
@@ -72,3 +75,4 @@ Frank Stanzione (CEO, owner, non-technical — wants numbers and decisions, not 
 - 2026-09-09 — recorded the official food-brand benchmark, adopted patterns, exclusions and acceptance standard in `docs/reviews/benchmark-refresh-2026-09-09.md`.
 - 2026-09-09 — completed a full top-standard redesign with commercial/brand, bilingual-content, and technical-QA agent reviews; rebuilt the shopper and retailer flows, removed obsolete AI packaging art and unverified experiences, and consolidated all pages into one deterministic bilingual source.
 - 2026-09-09 — optically centered the homepage product stage by removing the decorative tilt and centering both the white panel and product lineup across desktop and mobile layouts.
+- 2026-09-09 — expanded the site for CEO, investor, retailer, and distributor conversations: added the global private-label growth story with NIQ evidence, separate retailer and distributor propositions, a local interactive Americas roadmap with 11 target markets, the fuller ami ambition and brand story, American Foods ownership and operating credibility, corrected AFI organization links/schema, and pending-trademark `™` treatment in English and Spanish.

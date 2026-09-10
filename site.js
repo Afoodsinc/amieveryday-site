@@ -70,4 +70,28 @@
     }
     apply();
   }
+
+  const mapFrame = document.querySelector('.market-map-frame');
+  const marketFeature = document.querySelector('.market-feature');
+  if (mapFrame && marketFeature) {
+    const markers = [...mapFrame.querySelectorAll('.market-marker')];
+    const cards = [...document.querySelectorAll('[data-market-card]')];
+    const number = marketFeature.querySelector('.market-index');
+    const name = marketFeature.querySelector('h3');
+    const status = marketFeature.querySelector(':scope > strong');
+    const body = marketFeature.querySelector('p');
+    const link = marketFeature.querySelector('a');
+    const selectMarket = (marker) => {
+      markers.forEach((item) => item.setAttribute('aria-pressed', String(item === marker)));
+      cards.forEach((card) => card.classList.toggle('is-active', card.dataset.marketCard === marker.dataset.market));
+      if (number) number.textContent = marker.querySelector('span')?.textContent.padStart(2, '0') || '';
+      if (name) name.textContent = marker.dataset.name;
+      if (status) status.textContent = marker.dataset.status.split(' · ')[1] || marker.dataset.status;
+      if (body) body.textContent = marker.dataset.body;
+      if (link) link.href = `#market-${marker.dataset.market}`;
+    };
+    markers.forEach((marker) => marker.addEventListener('click', () => selectMarket(marker)));
+    const selected = markers.find((marker) => marker.getAttribute('aria-pressed') === 'true') || markers[0];
+    if (selected) selectMarket(selected);
+  }
 })();
