@@ -3,7 +3,7 @@
 Instructions for any coding agent (Codex, Claude, human) working in this repo. Read `HANDOFF.md` next for the full state of the project.
 
 ## What this is
-The consumer + retail-partner website of **ami anytime**, the own-brand grocery program of American Foods International (AFI, Miami / Panamá). Static HTML/CSS, bilingual (EN at `/`, ES at `/es/`), hosted on **GitHub Pages** from branch `main`, root folder. Live: https://amianytime.com · https://amianytime.com/es/
+The consumer + retail-partner website of **ami anytime**, the own-brand grocery program of American Foods International (Miami / Panamá). Static HTML/CSS, bilingual (EN at `/`, ES at `/es/`), hosted on **GitHub Pages** from branch `main`, root folder. Live: https://amianytime.com · https://amianytime.com/es/
 
 ## Hard rules
 1. **Static site only.** No build step is required to publish: whatever is in `main` is live within ~1 minute. If you add a generator, its output must be committed flat HTML in this layout (see "Layout").
@@ -22,7 +22,7 @@ The consumer + retail-partner website of **ami anytime**, the own-brand grocery 
 /                 EN pages: index.html about.html products.html product-tomato-paste.html recipes.html where-to-buy.html partners.html contact.html
 /es/              ES twins, same filenames
 /img/             WebP assets, local Americas SVG, optimized CC0 world-map PNG, and approved American Foods logo PNGs
-CNAME robots.txt sitemap.xml favicon.svg .nojekyll
+CNAME robots.txt sitemap.xml favicon.png .nojekyll
 docs/reviews/     CTO + UX review reports (2026-09-09) — the ranked backlog
 tools/legacy/     the ORIGINAL Python generator + CSS template (superseded; later patches were lost). Reference only.
 ```

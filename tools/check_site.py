@@ -7,6 +7,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
 
+from build_site import PRODUCTS
+
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ["index.html", "products.html", "product-tomato-paste.html", "recipes.html", "about.html", "where-to-buy.html", "partners.html", "contact.html"]
 
@@ -44,11 +46,27 @@ def check(page: Path):
     assert parser.canonical==1, f"{page}: expected one canonical"
     assert {"en","es","x-default"} <= parser.hreflangs, f"{page}: incomplete hreflang"
     assert 'href="#"' not in text, f"{page}: placeholder link"
-    assert "https://americanfoods.com" not in text, f"{page}: incorrect AFI organization URL"
+    assert "https://americanfoods.com" not in text, f"{page}: incorrect American Foods organization URL"
     assert "®" not in text, f"{page}: registered mark used without registration approval"
     assert "no launch announced" not in text.lower() and "lanzamiento no anunciado" not in text.lower(), f"{page}: stale no-launch language"
     assert "site-refresh.css" not in text, f"{page}: legacy stylesheet"
     assert "gen-basket" not in text and "gen-shopper" not in text and "gen-aisle" not in text, f"{page}: obsolete art"
+    assert "img/new-lockup.webp" not in text, f"{page}: obsolete opaque ami logo"
+    assert "favicon.svg" not in text, f"{page}: obsolete favicon"
+    assert "lineup.webp" not in text, f"{page}: stale social image"
+    assert "range-seal" not in text, f"{page}: obsolete product-count seal"
+    assert "numberOfItems" not in text and '"position"' not in text, f"{page}: public product counts remain in schema"
+    assert "29 products" not in text and "29 productos" not in text, f"{page}: public fixed catalogue count remains"
+    assert "170 g" not in text, f"{page}: stale tuna weight"
+    for phrase in ("first ami", "first range", "primer surtido", "focused range", "surtido enfocado", "focused start", "inicio enfocado", "next chapter", "próximo capítulo"):
+        assert phrase not in text.lower(), f"{page}: small-or-new brand language remains: {phrase}"
+    assert " AFI " not in text, f"{page}: public American Foods abbreviation remains"
+    assert "info@afoodsinc.com" not in text.lower(), f"{page}: old contact mailbox"
+    assert "trademark applications" not in text.lower() and "solicitudes de registro" not in text.lower(), f"{page}: stale pending-trademark wording"
+    assert "site.css?v=20260911-1" in text, f"{page}: stale shared CSS version"
+    assert "img/ami-social-card.webp" in text, f"{page}: missing current social image"
+    assert "img/ami-logo-navy.png" in text, f"{page}: missing canonical ami header logo"
+    assert "img/ami-logo-white.png" in text, f"{page}: missing canonical ami footer logo"
     for block in parser.json_blocks: json.loads(block)
     for image in parser.images:
         assert image.get("width") and image.get("height"), f"{page}: image missing dimensions: {image.get('src')}"
@@ -67,15 +85,25 @@ def check(page: Path):
         assert 'id="retailers"' in text and 'id="distributors"' in text, f"{page}: missing partner audience journey"
         assert "2009" in text and "2024" in text and "world-map.png" in text, f"{page}: missing long-term global evidence"
     if page.name=="products.html":
-        assert text.count("data-quick-product") == 29, f"{page}: every product must open a quick view"
+        assert text.count("data-quick-product") == len(PRODUCTS), f"{page}: every product must open a quick view"
         assert 'id="product-dialog"' in text, f"{page}: missing product quick view"
+        assert 'data-filter="pasta"' in text, f"{page}: missing pasta filter"
+        assert "data-template-en" not in text, f"{page}: numeric result-count template remains"
+        assert all(product[1 if expected=="en" else 2] in text for product in PRODUCTS), f"{page}: incomplete product range"
+        assert text.count("140 g") >= 3, f"{page}: tuna products must use the owner-confirmed 140 g size"
+    if page.name=="contact.html":
+        assert text.count("mailto:Sales@Afoodsinc.com") == 4, f"{page}: expected four approved inquiry routes"
+        assert "media-other" not in text and "Media or other" not in text and "Prensa u otra" not in text, f"{page}: obsolete fifth route"
+        expected_heading="To route your inquiry" if expected=="en" else "Para dirigir tu consulta"
+        assert expected_heading in text, f"{page}: incorrect contact heading"
 
 def main():
     pages=[ROOT/name for name in PAGES]+[ROOT/"es"/name for name in PAGES]
     for page in pages: check(page)
     assert (ROOT/"CNAME").read_text(encoding="utf-8").strip()=="amianytime.com"
-    for required in ("america-map.svg","world-map.png","afi-logo-white.png","afi-logo-navy.png"):
+    for required in ("america-map.svg","world-map.png","afi-logo-white.png","afi-logo-navy.png","ami-logo-navy.png","ami-logo-white.png","ami-social-card.webp"):
         assert (ROOT/"img"/required).exists(), f"missing required brand asset: {required}"
+    assert (ROOT/"favicon.png").exists(), "missing canonical browser icon"
     assert len(list(ROOT.glob("*.html")))==9
     print(f"OK: {len(pages)} bilingual pages, local references, metadata, images, and JSON-LD")
 

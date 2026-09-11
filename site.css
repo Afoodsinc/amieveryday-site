@@ -230,7 +230,7 @@ button { color: inherit; }
   padding: 18px 14px 12px;
 }
 .range-pack { position: relative; z-index: 1; aspect-ratio: 1; padding: 8px; display: grid; place-items: center; overflow: hidden; border: 1px solid rgba(33,54,107,.08); border-radius: 18px; background: rgba(255,255,255,.92); box-shadow: 0 16px 32px -25px rgba(20,37,77,.6); }
-.range-pack img { width: 100%; max-width: 145px; height: auto; aspect-ratio: 1; object-fit: contain; mix-blend-mode: multiply; filter: drop-shadow(0 14px 12px rgba(20,37,77,.14)); }
+.range-pack img { width: 100%; max-width: 145px; height: auto; aspect-ratio: 1; object-fit: contain; filter: drop-shadow(0 14px 12px rgba(20,37,77,.14)); }
 .hero-stage .range-montage { max-width: 510px; flex: 1; align-self: center; }
 
 .proof-strip {
@@ -276,10 +276,8 @@ button { color: inherit; }
 .recipe-hero-facts strong { color: #fff; font: 900 1.7rem/1 "Nunito", sans-serif; }
 .product-hero-visual { position: relative; display: grid; place-items: center; padding: 52px; overflow: hidden; background: radial-gradient(circle at 50% 45%, rgba(143,187,63,.32), transparent 34%), #fff; }
 .product-hero-visual::before { content: ""; position: absolute; inset: 26px; border: 1px solid rgba(20,37,77,.09); border-radius: 26px; }
-.product-hero-visual .range-montage { max-width: 560px; min-height: 530px; grid-template-columns: repeat(3, minmax(0,1fr)); align-items: center; gap: 6px 24px; padding: 88px 12px 22px; }
+.product-hero-visual .range-montage { max-width: 560px; min-height: 530px; grid-template-columns: repeat(3, minmax(0,1fr)); align-items: center; gap: 6px 24px; padding: 38px 12px 22px; }
 .product-hero-visual .range-pack img { max-width: 155px; }
-.range-seal { width: 126px; height: 126px; position: absolute; right: 30px; top: 30px; z-index: 2; display: grid; place-content: center; border-radius: 50%; background: var(--green); color: var(--navy-3); text-align: center; font-size: .7rem; font-weight: 900; line-height: 1.15; text-transform: uppercase; transform: rotate(5deg); box-shadow: 0 20px 45px -25px rgba(20,37,77,.7); }
-.range-seal strong { display: block; font: 900 2.6rem/.9 "Nunito", sans-serif; }
 .recipe-showcase-hero { grid-template-columns: minmax(0, .84fr) minmax(520px, 1.16fr); }
 .recipe-hero-visual { min-height: 650px; position: relative; overflow: hidden; }
 .recipe-hero-visual img { width: 100%; height: 100%; object-fit: cover; }
@@ -340,7 +338,7 @@ button { color: inherit; }
 .category-card:hover { transform: translateY(-4px); box-shadow: 0 28px 55px -34px rgba(20,37,77,.75); }
 .category-card span { position: relative; z-index: 2; font-size: .76rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; opacity: .82; }
 .category-card strong { position: relative; z-index: 2; max-width: 9ch; font: 900 1.55rem/1.06 "Nunito", sans-serif; }
-.category-card img { position: absolute; right: -4px; bottom: -18px; width: 150px; height: 150px; object-fit: contain; border-radius: 24px; mix-blend-mode: multiply; }
+.category-card img { position: absolute; right: -4px; bottom: -18px; width: 150px; height: 150px; object-fit: contain; border-radius: 24px; }
 
 .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 .product-card {
@@ -364,7 +362,7 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
   background: color-mix(in srgb, var(--category, var(--green)) 10%, #fff);
 }
 .product-visual::before { content: ""; position: absolute; inset: 18px; border-radius: 18px; border: 1px solid color-mix(in srgb, var(--category, var(--green)) 25%, transparent); }
-.product-visual img { width: 100%; height: 228px; object-fit: contain; position: relative; z-index: 1; mix-blend-mode: multiply; }
+.product-visual img { width: 100%; height: 228px; object-fit: contain; position: relative; z-index: 1; }
 .product-meta { min-height: 142px; padding: 20px 21px 23px; display: flex; flex-direction: column; }
 .product-category { display: inline-flex; align-items: center; gap: 7px; color: var(--navy); font-size: .72rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
 .product-category::before { content: ""; width: 8px; height: 8px; flex: none; border-radius: 50%; background: var(--category, var(--green-dark)); }
@@ -393,7 +391,7 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
 .color-key i { width: 12px; height: 12px; border-radius: 50%; background: var(--swatch); }
 .identity-product { position: relative; min-height: 430px; display: grid; place-items: center; }
 .identity-product::before { content: ""; position: absolute; width: 360px; height: 360px; border-radius: 50%; background: var(--green-soft); }
-.identity-product img { position: relative; z-index: 1; width: 370px; max-height: 400px; object-fit: contain; mix-blend-mode: multiply; }
+.identity-product img { position: relative; z-index: 1; width: 370px; max-height: 400px; object-fit: contain; }
 
 .story-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; }
 .story-card { min-height: 540px; position: relative; overflow: hidden; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
@@ -651,7 +649,7 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
 .product-dialog > form { position: absolute; right: 18px; top: 18px; z-index: 5; }
 .dialog-close { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--navy); font-size: 1.5rem; cursor: pointer; box-shadow: var(--shadow); }
 .dialog-product-stage { min-height: 560px; display: grid; place-items: center; padding: 48px; background: radial-gradient(circle, var(--green-soft), #f7f9f3 56%, #eef1f3); }
-.dialog-product-stage img { width: 100%; max-height: 470px; object-fit: contain; mix-blend-mode: multiply; filter: drop-shadow(0 26px 25px rgba(20,37,77,.18)); }
+.dialog-product-stage img { width: 100%; max-height: 470px; object-fit: contain; filter: drop-shadow(0 26px 25px rgba(20,37,77,.18)); }
 .dialog-product-copy { padding: 72px 54px 50px; display: flex; flex-direction: column; justify-content: center; }
 .dialog-product-copy h2 { margin: 14px 0 0; color: var(--navy); font: 900 clamp(2.8rem, 5vw, 4.8rem)/.95 "Nunito", sans-serif; letter-spacing: -.05em; }
 .dialog-product-copy > p { margin: 20px 0 0; color: var(--muted); }
@@ -665,7 +663,7 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
 .product-spotlight .pdp-stage::before, .product-spotlight .pdp-stage::after { content: ""; position: absolute; border: 1px solid rgba(33,54,107,.1); border-radius: 50%; }
 .product-spotlight .pdp-stage::before { width: 72%; aspect-ratio: 1; }
 .product-spotlight .pdp-stage::after { width: 88%; aspect-ratio: 1; }
-.pdp-stage img { width: 100%; max-height: 530px; position: relative; z-index: 2; object-fit: contain; mix-blend-mode: multiply; filter: drop-shadow(0 28px 26px rgba(20,37,77,.2)); }
+.pdp-stage img { width: 100%; max-height: 530px; position: relative; z-index: 2; object-fit: contain; filter: drop-shadow(0 28px 26px rgba(20,37,77,.2)); }
 .pdp-stage-note { position: absolute; left: 28px; top: 27px; z-index: 3; color: var(--green-dark); font-size: .72rem; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
 .pdp-stage-number { position: absolute; right: 28px; bottom: 19px; color: rgba(33,54,107,.09); font: 900 7rem/1 "Nunito", sans-serif; }
 .pdp-copy { padding-top: 36px; }
@@ -692,7 +690,7 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
 .recipe-article { padding: 74px 0; display: grid; grid-template-columns: minmax(0, .95fr) minmax(420px, 1.05fr); gap: clamp(42px, 7vw, 88px); border-top: 1px solid var(--line); scroll-margin-top: 110px; }
 .recipe-media img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
 .recipe-media.packshot { min-height: 430px; display: grid; place-items: center; padding: 42px; border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
-.recipe-media.packshot img { max-height: 350px; object-fit: contain; box-shadow: none; mix-blend-mode: multiply; }
+.recipe-media.packshot img { max-height: 350px; object-fit: contain; box-shadow: none; }
 .recipe-body h2 { margin-top: 12px; font-size: clamp(2.4rem, 4vw, 4rem); }
 .recipe-body h3 { margin: 29px 0 10px; color: var(--navy); font: 900 .9rem/1.2 "Nunito", sans-serif; letter-spacing: .12em; text-transform: uppercase; }
 .recipe-body ul, .recipe-body ol { margin: 0; padding-left: 21px; color: #3f4b5f; }
@@ -713,7 +711,7 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
 .empty-state p { max-width: 650px; margin: 22px auto 0; color: rgba(255,255,255,.72); }
 .empty-state .actions { justify-content: center; }
 .route-grid { margin: 42px 0 96px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.contact-routes { grid-template-columns: repeat(3, 1fr); }
+.contact-routes { grid-template-columns: repeat(2, 1fr); }
 .route-card { min-width: 0; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
 .route-card .route-number { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; background: var(--green-soft); color: var(--green-dark); font-weight: 900; }
 .route-card h2, .route-card h3 { margin: 20px 0 0; color: var(--navy); font: 900 1.5rem/1.08 "Nunito", sans-serif; }
@@ -728,15 +726,15 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
 .office address { margin-top: 12px; color: var(--muted); font-style: normal; }
 .error-hero { text-align: center; }
 .error-hero h1 { max-width: none; }
+.error-logo { width: 110px; margin: 32px auto 0; display: block; }
+.error-logo img { width: 100%; height: auto; }
 .error-panels { margin: 42px 0 96px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 
 .site-footer { margin-top: 20px; background: var(--navy-3); color: #fff; }
 .footer-inner { width: var(--page); margin: auto; padding: 58px 0 30px; }
 .footer-grid { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 48px; }
 .footer-brand { max-width: 320px; }
-.footer-wordmark { color: #fff; font: 900 2.8rem/1 "Nunito", sans-serif; letter-spacing: -.05em; }
-.footer-wordmark span { color: var(--green); }
-.footer-wordmark sup { margin-left: 4px; color: rgba(255,255,255,.65); font: 700 .72rem/1 "DM Sans", sans-serif; vertical-align: top; }
+.footer-logo { width: 122px; height: auto; display: block; }
 .footer-brand p { color: rgba(255,255,255,.62); }
 .site-footer h2 { margin: 0 0 13px; color: #fff; font: 900 .76rem/1 "Nunito", sans-serif; letter-spacing: .13em; text-transform: uppercase; }
 .footer-links { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
@@ -916,8 +914,6 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
   .product-hero-kpis span, .recipe-hero-facts span { padding-top: 13px; }
   .product-hero-visual, .recipe-hero-visual { min-height: 330px; }
   .product-hero-visual { padding: 30px 18px; }
-  .range-seal { width: 92px; height: 92px; right: 16px; top: 16px; font-size: .57rem; }
-  .range-seal strong { font-size: 2rem; }
   .recipe-hero-visual > span { left: 22px; bottom: 22px; }
   .product-dialog { max-height: calc(100dvh - 18px); }
   .dialog-product-stage { min-height: 300px; padding: 32px; }

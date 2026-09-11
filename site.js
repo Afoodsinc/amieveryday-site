@@ -48,10 +48,7 @@
         card.hidden = !(matchesText && matchesCategory);
         if (!card.hidden) visible += 1;
       });
-      if (status) {
-        const suffix = document.documentElement.lang === 'es' ? status.dataset.templateEs : status.dataset.templateEn;
-        status.textContent = `${visible} ${suffix}`;
-      }
+      if (status) status.textContent = document.documentElement.lang === 'es' ? status.dataset.statusEs : status.dataset.statusEn;
       if (empty) empty.hidden = visible !== 0;
     };
     filters.forEach((filter) => filter.addEventListener('click', () => {
