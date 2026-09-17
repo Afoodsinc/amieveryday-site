@@ -49,6 +49,7 @@ def check(page: Path):
     assert "https://americanfoods.com" not in text, f"{page}: incorrect American Foods organization URL"
     assert "americanfoodsllc.com" not in text.lower(), f"{page}: obsolete American Foods organization URL"
     assert "widely available" not in text.lower() and "amplia disponibilidad" not in text.lower(), f"{page}: unsupported availability claim"
+    assert "essential" not in text.lower() and "esencial" not in text.lower(), f"{page}: competitor-adjacent essential language remains"
     assert "®" not in text, f"{page}: registered mark used without registration approval"
     assert "no launch announced" not in text.lower() and "lanzamiento no anunciado" not in text.lower(), f"{page}: stale no-launch language"
     assert "site-refresh.css" not in text, f"{page}: legacy stylesheet"
@@ -119,6 +120,8 @@ def check(page: Path):
 def main():
     pages=[ROOT/name for name in PAGES]+[ROOT/"es"/name for name in PAGES]
     for page in pages: check(page)
+    error_page=(ROOT/"404.html").read_text(encoding="utf-8").lower()
+    assert "essential" not in error_page and "esencial" not in error_page, "404.html: competitor-adjacent essential language remains"
     css=(ROOT/"site.css").read_text(encoding="utf-8")
     focus_treatment=""":focus-visible {
   outline: 3px solid #fff;
