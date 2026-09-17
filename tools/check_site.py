@@ -47,6 +47,8 @@ def check(page: Path):
     assert {"en","es","x-default"} <= parser.hreflangs, f"{page}: incomplete hreflang"
     assert 'href="#"' not in text, f"{page}: placeholder link"
     assert "https://americanfoods.com" not in text, f"{page}: incorrect American Foods organization URL"
+    assert "americanfoodsllc.com" not in text.lower(), f"{page}: obsolete American Foods organization URL"
+    assert "widely available" not in text.lower() and "amplia disponibilidad" not in text.lower(), f"{page}: unsupported availability claim"
     assert "®" not in text, f"{page}: registered mark used without registration approval"
     assert "no launch announced" not in text.lower() and "lanzamiento no anunciado" not in text.lower(), f"{page}: stale no-launch language"
     assert "site-refresh.css" not in text, f"{page}: legacy stylesheet"
@@ -63,8 +65,11 @@ def check(page: Path):
     assert " AFI " not in text, f"{page}: public American Foods abbreviation remains"
     assert "info@afoodsinc.com" not in text.lower(), f"{page}: old contact mailbox"
     assert "trademark applications" not in text.lower() and "solicitudes de registro" not in text.lower(), f"{page}: stale pending-trademark wording"
-    assert "site.css?v=20260911-1" in text, f"{page}: stale shared CSS version"
+    assert "site.css?v=20260917-3" in text, f"{page}: stale shared CSS version"
     assert "img/ami-social-card.webp" in text, f"{page}: missing current social image"
+    expected_social_alt = "ami anytime everyday product range" if expected == "en" else "Gama de productos cotidianos ami anytime"
+    assert text.count(f'<meta property="og:image:alt" content="{expected_social_alt}">') == 1, f"{page}: incorrect Open Graph image alt"
+    assert text.count(f'<meta name="twitter:image:alt" content="{expected_social_alt}">') == 1, f"{page}: incorrect Twitter image alt"
     assert "img/ami-logo-navy.png" in text, f"{page}: missing canonical ami header logo"
     assert "img/ami-logo-white.png" in text, f"{page}: missing canonical ami footer logo"
     for block in parser.json_blocks: json.loads(block)
@@ -81,6 +86,18 @@ def check(page: Path):
         assert "cartocdn" not in text and "leaflet" not in text.lower(), f"{page}: map must not make third-party tile requests"
         assert text.count('data-market-filter=')==4, f"{page}: expected four market filters"
         assert "Partner applications open" in text or "Postulaciones de socios abiertas" in text, f"{page}: missing partnership status"
+        expected_market_label="Markets" if expected=="en" else "Mercados"
+        expected_retail_state="No verified retail locations have been published yet." if expected=="en" else "Todavía no se han publicado puntos de venta verificados."
+        assert f"<title>{expected_market_label} | ami anytime</title>" in text, f"{page}: incorrect market page label"
+        assert expected_retail_state in text, f"{page}: missing explicit unpublished retail-location state"
+        assert 'id="partner-opportunities"' in text, f"{page}: shopper and partner market states are not separated"
+        assert (
+            ('href="products.html"' in text and 'href="recipes.html"' in text)
+            or ('href="../products.html"' in text and 'href="../recipes.html"' in text)
+        ), f"{page}: missing shopper paths"
+        assert "Sales@Afoodsinc.com" in text and (
+            "opens your email application" in text or "abre tu aplicación de correo" in text
+        ), f"{page}: missing availability email fallback or disclosure"
     if page.name=="partners.html":
         assert 'id="retailers"' in text and 'id="distributors"' in text, f"{page}: missing partner audience journey"
         assert "2009" in text and "2024" in text and "world-map.png" in text, f"{page}: missing long-term global evidence"
@@ -92,7 +109,9 @@ def check(page: Path):
         assert all(product[1 if expected=="en" else 2] in text for product in PRODUCTS), f"{page}: incomplete product range"
         assert text.count("140 g") >= 3, f"{page}: tuna products must use the owner-confirmed 140 g size"
     if page.name=="contact.html":
-        assert text.count("mailto:Sales@Afoodsinc.com") == 4, f"{page}: expected four approved inquiry routes"
+        assert text.count("mailto:Sales@Afoodsinc.com?subject=") == 4, f"{page}: expected four approved inquiry routes"
+        assert text.count("mailto:Sales@Afoodsinc.com") == 5, f"{page}: expected four inquiry routes plus readable email fallback"
+        assert "Sales@Afoodsinc.com" in text and ("opens your email application" in text or "abre tu aplicación de correo" in text), f"{page}: missing email-app disclosure"
         assert "media-other" not in text and "Media or other" not in text and "Prensa u otra" not in text, f"{page}: obsolete fifth route"
         expected_heading="To route your inquiry" if expected=="en" else "Para dirigir tu consulta"
         assert expected_heading in text, f"{page}: incorrect contact heading"
@@ -100,6 +119,17 @@ def check(page: Path):
 def main():
     pages=[ROOT/name for name in PAGES]+[ROOT/"es"/name for name in PAGES]
     for page in pages: check(page)
+    css=(ROOT/"site.css").read_text(encoding="utf-8")
+    focus_treatment=""":focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--navy) !important;
+}"""
+    forced_colors="""@media (forced-colors: active) {
+  :focus-visible { outline-color: CanvasText; box-shadow: none !important; }
+}"""
+    assert focus_treatment in css, "global focus treatment must retain white and navy contrast rings"
+    assert forced_colors in css, "global focus treatment must retain forced-colors support"
     assert (ROOT/"CNAME").read_text(encoding="utf-8").strip()=="amianytime.com"
     for required in ("america-map.svg","world-map.png","afi-logo-white.png","afi-logo-navy.png","ami-logo-navy.png","ami-logo-white.png","ami-social-card.webp"):
         assert (ROOT/"img"/required).exists(), f"missing required brand asset: {required}"

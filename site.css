@@ -56,7 +56,14 @@ button { color: inherit; }
   box-shadow: var(--shadow);
 }
 .skip-link:focus { top: 16px; }
-:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--navy) !important;
+}
+@media (forced-colors: active) {
+  :focus-visible { outline-color: CanvasText; box-shadow: none !important; }
+}
 
 .site-header {
   position: sticky;
@@ -523,7 +530,11 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
 .market-marker:hover b, .market-marker:focus-visible b, .market-marker[aria-pressed="true"] b { opacity: 1; transform: none; }
 .market-feature { padding: 38px; min-height: 690px; display: flex; flex-direction: column; justify-content: center; border-radius: 26px; background: linear-gradient(160deg, var(--green-soft), #fff); color: var(--ink); }
 .market-feature:focus { outline: 0; }
-.market-feature:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+.market-feature:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--navy) !important;
+}
 .market-index { color: var(--green-dark); font: 900 .78rem/1 "Nunito", sans-serif; letter-spacing: .14em; }
 .status-chip { width: fit-content; margin-top: 22px; padding: 7px 11px; border: 1px solid rgba(33,54,107,.14); border-radius: 999px; background: rgba(255,255,255,.66); color: var(--green-dark); font-size: .7rem; font-weight: 900; text-transform: uppercase; }
 .market-feature h3 { margin: 18px 0 0; color: var(--navy); font: 900 clamp(2.7rem, 4vw, 4.5rem)/.95 "Nunito", sans-serif; letter-spacing: -.045em; }
@@ -609,6 +620,14 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
 .page-hero h1 { max-width: 14ch; margin-top: 16px; font-size: clamp(3rem, 6vw, 5.6rem); }
 .page-hero p { max-width: 700px; margin: 24px 0 0; color: var(--muted); font-size: 1.08rem; }
 .page-hero .actions { max-width: 700px; }
+.shopper-market-panel { margin: 28px 0 70px; padding: clamp(28px, 4vw, 44px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(270px, .8fr); gap: 34px; align-items: center; border: 1px solid rgba(33,54,107,.14); border-radius: var(--radius); background: linear-gradient(125deg, #fff, var(--green-soft)); box-shadow: var(--shadow); }
+.shopper-market-panel h2 { max-width: 20ch; margin: 10px 0 0; color: var(--navy); font: 900 clamp(2rem, 3.3vw, 3.35rem)/1 "Nunito", sans-serif; letter-spacing: -.04em; }
+.shopper-market-panel p { max-width: 720px; margin: 17px 0 0; color: var(--muted); }
+.shopper-market-panel p a { color: var(--navy); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+.shopper-market-panel p small { display: block; margin-top: 7px; color: #5b674f; font-size: .78rem; }
+.shopper-market-panel .actions { margin-top: 0; justify-content: flex-end; align-items: center; }
+.shopper-market-panel .text-link { width: 100%; justify-content: flex-end; }
+.home-market-status { margin-top: 76px; margin-bottom: 0; }
 #american-foods { scroll-margin-top: 110px; }
 .breadcrumbs { display: flex; gap: 9px; align-items: center; margin: 22px 0 -2px; color: var(--muted); font-size: .82rem; }
 .breadcrumbs a { color: var(--navy); font-weight: 700; }
@@ -711,6 +730,8 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
 .empty-state p { max-width: 650px; margin: 22px auto 0; color: rgba(255,255,255,.72); }
 .empty-state .actions { justify-content: center; }
 .route-grid { margin: 42px 0 96px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.contact-email-note { margin: 28px 0 -12px; padding: 18px 22px; border: 1px solid rgba(33,54,107,.15); border-radius: 16px; background: var(--green-soft); color: var(--ink); }
+.contact-email-note a { color: var(--navy); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
 .contact-routes { grid-template-columns: repeat(2, 1fr); }
 .route-card { min-width: 0; padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
 .route-card .route-number { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; background: var(--green-soft); color: var(--green-dark); font-weight: 900; }
@@ -802,6 +823,9 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
   .story-card { min-height: 420px; }
   .recipe-grid { grid-template-columns: 1fr 1fr; }
   .retailer-panel { grid-template-columns: 1fr; }
+  .shopper-market-panel { grid-template-columns: 1fr; }
+  .shopper-market-panel .actions { justify-content: flex-start; }
+  .shopper-market-panel .text-link { justify-content: flex-start; }
   .page-hero { padding: 44px 30px; }
   .catalog-tools { top: 86px; }
   .pdp-stage { min-height: 470px; }
@@ -868,6 +892,7 @@ a.product-card:hover, button.product-card:hover { transform: translateY(-5px); b
   .story-grid, .recipe-grid { grid-template-columns: 1fr; }
   .story-card { min-height: 390px; }
   .retailer-panel { margin-bottom: 72px; padding: 34px 22px; }
+  .shopper-market-panel { padding: 30px 22px; }
   .page-hero { padding: 34px 22px; border-radius: 24px; }
   .page-hero h1 { font-size: clamp(2.7rem, 13vw, 4.4rem); }
   .catalog-tools { top: 78px; padding: 12px; }
