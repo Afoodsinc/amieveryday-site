@@ -1,4 +1,8 @@
 (() => {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const forcedColors = window.matchMedia('(forced-colors: active)');
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+
   const button = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.primary-nav');
   if (button && nav) {
@@ -20,13 +24,165 @@
   }
 
   const items = document.querySelectorAll('[data-reveal]');
-  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  try {
+    if (!('IntersectionObserver' in window) || reducedMotion.matches) {
+      items.forEach((item) => item.classList.add('is-visible'));
+    } else {
+      const observer = new IntersectionObserver((entries, instance) => entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add('is-visible'); instance.unobserve(entry.target); }
+      }), { rootMargin: '0px 0px -8% 0px' });
+      items.forEach((item) => observer.observe(item));
+    }
+    document.documentElement.classList.add('motion-ready');
+  } catch (error) {
     items.forEach((item) => item.classList.add('is-visible'));
-  } else {
-    const observer = new IntersectionObserver((entries, instance) => entries.forEach((entry) => {
-      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); instance.unobserve(entry.target); }
-    }), { rootMargin: '0px 0px -8% 0px' });
-    items.forEach((item) => observer.observe(item));
+    document.documentElement.classList.remove('motion-ready');
+  }
+
+  const films = [...document.querySelectorAll('.brand-film')];
+  films.forEach((film) => {
+    const video = film.querySelector('[data-cinema-video]');
+    const toggle = film.querySelector('[data-cinema-toggle]');
+    if (!video || !toggle) return;
+
+    const playLabel = toggle.dataset.playLabel || 'Play film';
+    const pauseLabel = toggle.dataset.pauseLabel || 'Pause film';
+    const labelNode = toggle.querySelector('[data-cinema-label], span:last-child');
+    let restrictedAutoplay = reducedMotion.matches || forcedColors.matches || navigator.connection?.saveData === true;
+    let loaded = video.readyState > 0;
+    let inView = false;
+    let userPaused = false;
+
+    const setToggleState = (playing) => {
+      const label = playing ? pauseLabel : playLabel;
+      toggle.setAttribute('aria-label', label);
+      toggle.setAttribute('title', label);
+      toggle.setAttribute('aria-pressed', String(playing));
+      if (labelNode) labelNode.textContent = label;
+      film.classList.toggle('is-playing', playing);
+    };
+
+    const loadVideo = () => {
+      if (loaded) return;
+      video.querySelectorAll('source[data-src]').forEach((source) => {
+        source.src = source.dataset.src;
+        source.removeAttribute('data-src');
+      });
+      if (video.dataset.src) {
+        video.src = video.dataset.src;
+        video.removeAttribute('data-src');
+      }
+      loaded = true;
+      video.load();
+    };
+
+    const playVideo = async () => {
+      loadVideo();
+      try {
+        await video.play();
+      } catch (error) {
+        setToggleState(false);
+      }
+    };
+
+    const playWhenEligible = () => {
+      if (!restrictedAutoplay && inView && !userPaused && !document.hidden) playVideo();
+    };
+
+    const syncPlaybackPreference = () => {
+      restrictedAutoplay = reducedMotion.matches || forcedColors.matches || navigator.connection?.saveData === true;
+      if (restrictedAutoplay) video.pause(); else playWhenEligible();
+    };
+
+    video.autoplay = false;
+    video.addEventListener('play', () => setToggleState(true));
+    video.addEventListener('pause', () => setToggleState(false));
+    video.addEventListener('canplay', () => film.classList.add('is-ready'));
+    video.addEventListener('error', () => {
+      film.classList.add('has-video-error');
+      setToggleState(false);
+    });
+    toggle.addEventListener('click', () => {
+      if (video.paused || video.ended) {
+        userPaused = false;
+        playVideo();
+      } else {
+        userPaused = true;
+        video.pause();
+      }
+    });
+    setToggleState(false);
+
+    if ('IntersectionObserver' in window) {
+      if (!restrictedAutoplay) {
+        const preloadObserver = new IntersectionObserver(([entry], instance) => {
+          if (!entry.isIntersecting) return;
+          loadVideo();
+          instance.disconnect();
+        }, { rootMargin: '240px 0px' });
+        preloadObserver.observe(film);
+      }
+      const filmObserver = new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting && entry.intersectionRatio >= .35;
+        if (inView) playWhenEligible(); else video.pause();
+      }, { threshold: [0, .35, .75] });
+      filmObserver.observe(film);
+    } else if (!restrictedAutoplay) {
+      inView = true;
+      playWhenEligible();
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) video.pause(); else playWhenEligible();
+    });
+    reducedMotion.addEventListener?.('change', syncPlaybackPreference);
+    forcedColors.addEventListener?.('change', syncPlaybackPreference);
+    navigator.connection?.addEventListener?.('change', syncPlaybackPreference);
+  });
+
+  const motionTargets = [...document.querySelectorAll('.product-card, .category-card, .range-montage, .range-pack, .pdp-stage, .recipe-card, .identity-product, .split-media')]
+    .filter((target) => !target.matches('.range-montage') || !target.querySelector('.range-pack'));
+  if (finePointer.matches && !reducedMotion.matches && !forcedColors.matches) {
+    motionTargets.forEach((target) => {
+      const limit = target.matches('.pdp-stage, .range-montage') ? 8 : target.matches('.range-pack') ? 5 : target.matches('.recipe-card, .identity-product, .split-media') ? 4 : 6;
+      const scale = target.matches('.range-pack') ? 1.025 : target.matches('.recipe-card, .identity-product, .split-media') ? 1.012 : 1.035;
+      let frame = 0;
+      let point = null;
+
+      const render = () => {
+        frame = 0;
+        if (!point) return;
+        const bounds = target.getBoundingClientRect();
+        const xRatio = ((point.x - bounds.left) / bounds.width) * 2 - 1;
+        const yRatio = ((point.y - bounds.top) / bounds.height) * 2 - 1;
+        target.style.setProperty('--motion-x', `${(xRatio * limit).toFixed(2)}px`);
+        target.style.setProperty('--motion-y', `${(yRatio * limit).toFixed(2)}px`);
+        target.style.setProperty('--motion-rx', `${(-yRatio * 1.4).toFixed(2)}deg`);
+        target.style.setProperty('--motion-ry', `${(xRatio * 1.4).toFixed(2)}deg`);
+        target.style.setProperty('--motion-scale', scale);
+      };
+
+      const schedule = (event) => {
+        point = { x: event.clientX, y: event.clientY };
+        if (!frame) frame = requestAnimationFrame(render);
+      };
+      const reset = () => {
+        point = null;
+        if (frame) cancelAnimationFrame(frame);
+        frame = 0;
+        target.style.removeProperty('--motion-x');
+        target.style.removeProperty('--motion-y');
+        target.style.removeProperty('--motion-rx');
+        target.style.removeProperty('--motion-ry');
+        target.style.removeProperty('--motion-scale');
+      };
+
+      target.classList.add('has-pointer-motion');
+      target.addEventListener('pointermove', schedule, { passive: true });
+      target.addEventListener('pointerleave', reset);
+      target.addEventListener('pointercancel', reset);
+      target.addEventListener('blur', reset, true);
+    });
   }
 
   const catalog = document.getElementById('product-grid');
@@ -66,6 +222,20 @@
       filters.forEach((item) => item.setAttribute('aria-pressed', String(item.dataset.filter === category)));
     }
     apply();
+    cards.forEach((card, index) => {
+      card.classList.add('catalog-card-reveal');
+      card.style.setProperty('--catalog-order', index % 8);
+    });
+    if ('IntersectionObserver' in window && !reducedMotion.matches) {
+      const cardRevealObserver = new IntersectionObserver((entries, instance) => entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-catalog-visible');
+        instance.unobserve(entry.target);
+      }), { rootMargin: '0px 0px -6% 0px', threshold: .08 });
+      cards.forEach((card) => cardRevealObserver.observe(card));
+    } else {
+      cards.forEach((card) => card.classList.add('is-catalog-visible'));
+    }
   }
 
   const productDialog = document.getElementById('product-dialog');
@@ -94,11 +264,17 @@
         if (product.dataset.full) dialogFull.href = product.dataset.full;
       }
       productDialog.showModal();
+      productDialog.classList.remove('is-opening');
+      void productDialog.offsetWidth;
+      productDialog.classList.add('is-opening');
     }));
     productDialog.addEventListener('click', (event) => {
       if (event.target === productDialog) productDialog.close();
     });
-    productDialog.addEventListener('close', () => opener?.focus());
+    productDialog.addEventListener('close', () => {
+      productDialog.classList.remove('is-opening');
+      opener?.focus();
+    });
   }
 
   const mapFrame = document.querySelector('.market-map-frame');
@@ -127,6 +303,17 @@
       if (marketApply && marketApplyBase) {
         const path = marketApplyBase.split('#')[0];
         marketApply.href = `${path}?market=${encodeURIComponent(marker.dataset.name)}#distribution-inquiry`;
+      }
+      if (!reducedMotion.matches) {
+        marketFeature.classList.remove('market-updating');
+        void marketFeature.offsetWidth;
+        marketFeature.classList.add('market-updating');
+        const activeCard = cards.find((card) => card.dataset.marketCard === marker.dataset.market);
+        activeCard?.classList.remove('selection-pop');
+        if (activeCard) {
+          void activeCard.offsetWidth;
+          activeCard.classList.add('selection-pop');
+        }
       }
     };
     markers.forEach((marker) => marker.addEventListener('click', () => selectMarket(marker)));
