@@ -10,7 +10,9 @@ from urllib.parse import urlsplit
 from build_site import PRODUCTS
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ["index.html", "products.html", "product-tomato-paste.html", "recipes.html", "about.html", "where-to-buy.html", "partners.html", "contact.html"]
+FILM_PAGES = ["index.html", "products.html", "product-tomato-paste.html", "recipes.html", "about.html", "where-to-buy.html", "partners.html", "contact.html"]
+PAGES = FILM_PAGES + ["portal.html"]
+SIGN_IN = {"en": "https://www.afoodsinc.com/portal/sign-in", "es": "https://www.afoodsinc.com/es/portal/sign-in"}
 
 class AuditParser(HTMLParser):
     def __init__(self):
@@ -70,14 +72,23 @@ def check(page: Path):
     assert " AFI " not in text, f"{page}: public American Foods abbreviation remains"
     assert "info@afoodsinc.com" not in text.lower(), f"{page}: old contact mailbox"
     assert "trademark applications" not in text.lower() and "solicitudes de registro" not in text.lower(), f"{page}: stale pending-trademark wording"
-    assert "site.css?v=20260920-2" in text, f"{page}: stale shared CSS version"
-    assert "site.js?v=20260920-2" in text, f"{page}: stale shared JavaScript version"
+    assert "site.css?v=20261115-1" in text, f"{page}: stale shared CSS version"
+    assert "site.js?v=20261115-1" in text, f"{page}: stale shared JavaScript version"
     assert "img/ami-social-card.webp" in text, f"{page}: missing current social image"
     expected_social_alt = "ami anytime everyday product range" if expected == "en" else "Gama de productos cotidianos ami anytime"
     assert text.count(f'<meta property="og:image:alt" content="{expected_social_alt}">') == 1, f"{page}: incorrect Open Graph image alt"
     assert text.count(f'<meta name="twitter:image:alt" content="{expected_social_alt}">') == 1, f"{page}: incorrect Twitter image alt"
     assert "img/ami-logo-navy.png" in text, f"{page}: missing canonical ami header logo"
     assert "img/ami-logo-white.png" in text, f"{page}: missing canonical ami footer logo"
+    sign_in=SIGN_IN[expected]
+    assert f'href="{"portal.html" if expected=="en" else "portal.html"}"' in text, f"{page}: missing Portal navigation link"
+    if page.name in ("index.html","portal.html"):
+        assert f'href="{sign_in}" data-portal-sign-in' in text, f"{page}: Portal must link to the shared American Foods sign-in"
+    assert "afoodsinc.com/portal/sign-in" not in text or sign_in in text, f"{page}: sign-in link in the wrong language"
+    if page.name=="portal.html":
+        for ref in parser.refs:
+            assert "_next/image" not in ref and "/api/media/" not in ref, f"{page}: portal images must be local"
+        return
     expected_film={
         "index.html":"table", "products.html":"ingredients", "product-tomato-paste.html":"product",
         "recipes.html":"kitchen", "about.html":"about", "where-to-buy.html":"markets",
@@ -148,7 +159,7 @@ def main():
     for page in pages: check(page)
     error_page=(ROOT/"404.html").read_text(encoding="utf-8").lower()
     assert "essential" not in error_page and "esencial" not in error_page, "404.html: competitor-adjacent essential language remains"
-    assert "site.css?v=20260920-2" in error_page, "404.html: stale shared CSS version"
+    assert "site.css?v=20261115-1" in error_page, "404.html: stale shared CSS version"
     css=(ROOT/"site.css").read_text(encoding="utf-8")
     focus_treatment=""":focus-visible {
   outline: 3px solid #fff;
@@ -174,21 +185,21 @@ def main():
         assert mobile.exists() and mobile.stat().st_size <= 1200*1024, f"{mobile}: missing or over 1.2 MB"
         media.extend((poster,desktop,mobile))
     assert sum(path.stat().st_size for path in media) <= 30*1024*1024, "website film package exceeds 30 MB"
-    for name in PAGES:
+    for name in FILM_PAGES:
         en=AuditParser(); en.feed((ROOT/name).read_text(encoding="utf-8"))
         es=AuditParser(); es.feed((ROOT/"es"/name).read_text(encoding="utf-8"))
         en_sources=[Path(source["data-src"]).name for source in en.cinema_sources]
         es_sources=[Path(source["data-src"]).name for source in es.cinema_sources]
         assert en_sources==es_sources, f"{name}: English and Spanish must share the same approved films"
     en_film_keys=[]
-    for name in PAGES:
+    for name in FILM_PAGES:
         parser=AuditParser(); parser.feed((ROOT/name).read_text(encoding="utf-8"))
         en_film_keys.append(parser.films[0]["data-film"])
-    assert len(set(en_film_keys))==len(PAGES), "every English page type must have a distinct approved film"
+    assert len(set(en_film_keys))==len(FILM_PAGES), "every English page type must have a distinct approved film"
     product_page=(ROOT/"product-tomato-paste.html").read_text(encoding="utf-8")
     assert 'class="brand-film__product"' in product_page and 'src="img/tomato-paste.webp"' in product_page, "product film must preserve the exact packshot as an HTML overlay"
     assert (ROOT/"favicon.png").exists(), "missing canonical browser icon"
-    assert len(list(ROOT.glob("*.html")))==9
+    assert len(list(ROOT.glob("*.html")))==10
     print(f"OK: {len(pages)} bilingual pages, local references, metadata, images, and JSON-LD")
 
 if __name__=="__main__": main()

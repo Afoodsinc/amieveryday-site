@@ -1206,3 +1206,56 @@ button.category-card:focus-visible { transform: translateY(-3px) scale(1.015); }
   .motion-ready [data-reveal] { opacity: 1; transform: none; transition: none; }
   .motion-ready .catalog-card-reveal { opacity: 1; filter: none; }
 }
+
+/* Customer portal (shared with afoodsinc.com; one sign-in) */
+.portal-teaser { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: clamp(32px, 5vw, 64px); align-items: center; margin-top: 20px; margin-bottom: 20px; padding: clamp(32px, 5vw, 64px); border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--navy), var(--navy-3)); color: #fff; box-shadow: var(--shadow-lg); }
+.portal-teaser h2 { margin-top: 14px; color: #fff; font-size: clamp(2.3rem, 4vw, 3.9rem); }
+.portal-teaser__copy > p { max-width: 620px; margin: 18px 0 0; color: rgba(255,255,255,.86); font-size: 1.05rem; }
+.portal-teaser__list { display: grid; gap: 10px; margin: 22px 0 26px; padding: 0; list-style: none; }
+.portal-teaser__list li { position: relative; padding-left: 30px; color: #fff; font-weight: 700; }
+.portal-teaser__list li::before { content: ""; position: absolute; left: 0; top: .32em; width: 18px; height: 18px; border-radius: 50%; background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d1a38' stroke-width='3.4'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 12px no-repeat; }
+.portal-teaser__list.dark li { color: var(--ink); }
+.portal-note { max-width: 620px; margin: 18px 0 0; color: rgba(255,255,255,.7); font-size: .92rem; }
+.page-hero .portal-note { color: var(--muted); }
+.portal-teaser__media { position: relative; display: block; overflow: hidden; border-radius: var(--radius); background: #fff; box-shadow: 0 30px 70px -36px rgba(0,0,0,.7); transition: transform .3s ease; }
+.portal-teaser__media:hover { transform: translateY(-4px); }
+.portal-teaser__media img, .portal-frame img, .portal-phones__media img { display: block; width: 100%; height: auto; }
+.portal-sample { display: inline-block; margin-top: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.14); color: rgba(255,255,255,.86); font-size: .78rem; font-weight: 700; letter-spacing: .02em; }
+.portal-teaser__media .portal-sample { position: absolute; right: 14px; bottom: 14px; margin: 0; background: rgba(13,26,56,.78); color: #fff; }
+.portal-frame { position: relative; margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
+.portal-frame figcaption { position: absolute; right: 12px; bottom: 12px; padding: 5px 11px; border-radius: 999px; background: rgba(13,26,56,.78); color: #fff; font-size: .76rem; font-weight: 700; }
+.portal-showcase { display: grid; gap: 36px; padding: 20px 0 64px; }
+.portal-showcase__copy { max-width: 820px; }
+.portal-showcase__copy h2, .portal-feature h2, .portal-phones h2, .portal-assistant h2 { margin-top: 13px; font-size: clamp(2.1rem, 3.6vw, 3.4rem); }
+.portal-showcase__copy p, .portal-feature p, .portal-assistant p { margin: 16px 0 0; color: var(--muted); font-size: 1.05rem; }
+.portal-features { display: grid; gap: 28px; padding-bottom: 56px; }
+.portal-feature { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 72px); align-items: center; padding: 28px 0; border-top: 1px solid var(--line); }
+.portal-feature:nth-child(even) { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); }
+.portal-feature:nth-child(even) .portal-feature__copy { order: 2; }
+.portal-phones { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; margin: 20px 0 56px; padding: clamp(32px, 5vw, 64px); border-radius: var(--radius-lg); background: linear-gradient(135deg, #526f1f, var(--green-dark)); color: #fff; box-shadow: var(--shadow-lg); }
+.portal-phones h2 { color: #fff; }
+.portal-phones p { margin: 16px 0 0; color: rgba(255,255,255,.86); font-size: 1.05rem; }
+.portal-phones__media { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.portal-phones__media figure { margin: 0; overflow: hidden; border: 6px solid var(--navy-3); border-radius: 30px; background: #fff; box-shadow: 0 30px 70px -36px rgba(0,0,0,.7); }
+.portal-phones__media figure:nth-child(2) { transform: translateY(28px); }
+.portal-assistant { display: grid; grid-template-columns: minmax(160px, 260px) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; margin-bottom: 20px; padding: clamp(28px, 4vw, 52px); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--warm); }
+.portal-assistant img { width: 100%; height: auto; }
+.portal-cta .actions { flex: none; }
+.portal-more { margin-top: 12px !important; }
+.portal-more a { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 820px) {
+  .portal-teaser, .portal-feature, .portal-feature:nth-child(even), .portal-phones, .portal-assistant { grid-template-columns: 1fr; }
+  .portal-feature:nth-child(even) .portal-feature__copy { order: 0; }
+  .portal-phones__media figure:nth-child(2) { transform: none; }
+  .portal-assistant img { max-width: 180px; }
+}
+@media (max-width: 560px) {
+  .portal-teaser, .portal-phones { padding: 26px 20px; }
+  .portal-phones__media { gap: 12px; }
+  .portal-phones__media figure { border-width: 4px; border-radius: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portal-teaser__media, .portal-teaser__media:hover { transition: none; transform: none; }
+}
+.portal-teaser h2, .portal-showcase__copy h2, .portal-feature h2, .portal-phones h2, .portal-assistant h2 { margin-bottom: 0; font-family: "Nunito", system-ui, sans-serif; font-weight: 900; line-height: .98; letter-spacing: -.045em; text-wrap: balance; }
+.portal-showcase__copy h2, .portal-feature h2, .portal-assistant h2 { color: var(--navy); }
